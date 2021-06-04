@@ -1,0 +1,71 @@
+h1 {
+    color:rgb(7, 6, 65);
+    font-size: 75px;
+    text-align: center;
+    background-color: rgb(177, 204, 238);
+}
+h2 {
+    color: blue;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 50px;
+    text-align: center;
+    background-color:  rgb(177, 204, 238);
+}
+body {
+    background-color: white;
+}
+.eliminar {
+    background-color: red;
+}
+.menu  {
+    border: 1px solid black;
+    margin-left: 400px;
+    margin-right: 400px;
+    font-style: italic;
+    text-align: center;
+    background-color: blanchedalmond;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    font-size: 25px;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    
+}
+.editar {
+    font-size: 20px;
+}
+table, td, th {
+    border: black 1.5px solid;
+    margin-left: 50px;
+    padding: 5px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    text-align: center;
+    
+}
+table {
+    border-spacing: 25px;
+}
+th {
+    background-color: blanchedalmond;
+}
+
+.volver {
+    font-size: 20px;
+}
+@keyframes slidein {
+    from{
+        margin-left:100%;
+        width: 300%
+
+    }
+    to{
+        margin-left: 0%;
+        width: 100%;
+    }
+    
+}
+.move {
+    animation-duration: 3s;
+    animation-name: slidein;
+}
