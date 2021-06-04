@@ -1,0 +1,183 @@
+body {
+  font-size: .875rem;
+  background-color: rgb(224, 223, 223);
+}
+
+.feather {
+  width: 16px;
+  height: 16px;
+  vertical-align: text-bottom;
+}
+
+/*
+ * Sidebar
+ */
+
+.sidebar {
+  position: fixed;
+  top: 0;
+  /* rtl:raw:
+  right: 0;
+  */
+  bottom: 0;
+  /* rtl:remove */
+  left: 0;
+  z-index: 100; /* Behind the navbar */
+  padding: 48px 0 0; /* Height of navbar */
+  box-shadow: inset -1px 0 0 rgba(0, 0, 0, .1);
+}
+
+@media (max-width: 767.98px) {
+  .sidebar {
+    top: 5rem;
+  }
+}
+
+.sidebar-sticky {
+  position: relative;
+  top: 0;
+  height: calc(100vh - 48px);
+  padding-top: .5rem;
+  overflow-x: hidden;
+  overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
+}
+
+.sidebar .nav-link {
+  font-weight: 500;
+  color: #333;
+}
+
+.sidebar .nav-link .feather {
+  margin-right: 4px;
+  color: #727272;
+}
+
+.sidebar .nav-link.active {
+  color: #007bff;
+}
+
+.sidebar .nav-link:hover .feather,
+.sidebar .nav-link.active .feather {
+  color: inherit;
+}
+
+.sidebar-heading {
+  font-size: .75rem;
+  text-transform: uppercase;
+}
+
+/*
+ * Navbar
+ */
+
+.navbar-brand {
+  padding-top: .75rem;
+  padding-bottom: .75rem;
+  font-size: 1rem;
+  background-color: rgba(0, 0, 0, .25);
+  box-shadow: inset -1px 0 0 rgba(0, 0, 0, .25);
+}
+
+.navbar .navbar-toggler {
+  top: .25rem;
+  right: 1rem;
+}
+
+.navbar .form-control {
+  padding: .75rem 1rem;
+  border-width: 0;
+  border-radius: 0;
+}
+
+.form-control-dark {
+  color: #fff;
+  background-color: rgba(255, 255, 255, .1);
+  border-color: rgba(255, 255, 255, .1);
+}
+
+.form-control-dark:focus {
+  border-color: transparent;
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, .25);
+}
+header {
+  padding: 1rem;
+
+}
+#inicio {
+  text-align: left;
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 1.3rem;
+  color: white;
+}
+#oferta {
+  opacity: 1;
+}
+
+a {
+  text-decoration: none;
+  color:rgb(144, 147, 150)
+}
+a:hover {
+  text-decoration: underline;
+}
+.masthead {
+  text-align: end;
+  width: 100%;
+  min-height: 33rem;
+  height: 100%;
+  background-image: url(../img/computer.jpg);
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  opacity: 1;
+}
+#mas  {
+  margin-left: 1rem;
+}
+#oferta {
+  opacity: 1;
+}
+
+a {
+  text-decoration: none;
+  color:rgb(144, 147, 150)
+}
+a:hover {
+  text-decoration: underline;
+}
+.masthead {
+  text-align: end;
+  width: 100%;
+  min-height: 33rem;
+  height: 100%;
+  background-image: url(../img/computer.jpg);
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  opacity: 1;
+}
+#mas  {
+  margin-left: 1rem;
+}
+
+#clase3 #clase4{
+  background-color: rgb(137, 166, 189);
+  border-left:  solid 2px black;
+  border-bottom:  solid 2px black;
+  margin-bottom: 3rem;
+  opacity: 1;
+  
+}
+.row {
+  padding-bottom: 1rem;
+  margin-bottom: 2rem;
+  opacity: 1;
+} 
+.col-8 {
+  padding: 2.5rem;
+  background-color: rgb(174, 209, 219);
+  border-style: double;
+  border-color: blueviolet;
+  margin: 3rem;
+  opacity: 1;
+}

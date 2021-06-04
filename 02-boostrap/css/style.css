@@ -1,0 +1,86 @@
+body {
+    background-color: rgb(202, 202, 202);
+    /* background-image: url(../img/computer.jpg);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    opacity: 0.8; */
+}
+.bod {
+    background-image: url(../img/computer.jpg);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    opacity: 0.75;
+    min-height: 33rem;
+
+}
+header {
+  padding: 1rem;
+
+}
+th, td{
+    text-align: center;
+}
+h1 {
+    text-align: center;
+    padding-top: 2rem;
+    padding-bottom: 3rem;
+}
+.col-4, .col-md-3 {
+    background-color: rgb(137, 166, 189);
+    border-left:  solid 2px black;
+    border-bottom:  solid 2px black;
+    margin-bottom: 3rem;
+    opacity: 1;
+    
+}
+.row {
+    padding-bottom: 1rem;
+    margin-bottom: 2rem;
+    opacity: 1;
+}
+h2 {
+    margin-left: 5rem;
+    padding-bottom: 1rem;
+    padding-top: 1rem;
+}
+.col-8 {
+    padding: 2.5rem;
+    background-color: rgb(174, 209, 219);
+    border-style: double;
+    border-color: blueviolet;
+    margin: 3rem;
+    opacity: 1;
+}
+#inicio {
+    text-align: left;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 1.3rem;
+    color: white;
+}
+#oferta {
+    opacity: 1;
+}
+
+a {
+    text-decoration: none;
+    color:rgb(144, 147, 150)
+}
+a:hover {
+    text-decoration: underline;
+}
+.masthead {
+    text-align: end;
+    width: 100%;
+    min-height: 33rem;
+    height: 100%;
+    background-image: url(../img/computer.jpg);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    opacity: 1;
+}
+#mas  {
+    margin-left: 1rem;
+}

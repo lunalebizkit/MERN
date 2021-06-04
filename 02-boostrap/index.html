@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+    integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous"> 
+  <link rel="stylesheet" href="./css/style.css">
+
+
+  <title>Index</title>
+</head>
+
+<body>
+
+  <nav class="navbar bg-dark navbar-dark navbar-expand-lg">
+    <div class="container">
+      <a href="./inicio.html" class="navbar-brand">CompuTech</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+        aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+
+          <li class="nav-item active">
+            <a class="nav-link" href="./index.html">Productos</a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="./editarProducto.html">Editar</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <div class="bod">
+    <div <div class="container">
+      <h1>Productos</h1>
+
+      <table class="table table-light ">
+        <!-- <p class="fw-bolder; display-6" style="color:blue">Esta pagina muestra una lista de productos</p> -->
+        <thead>
+          <tr class="table-primary">
+            <th scope="col">#</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Opciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <div class="spinner-border text-info"></div>
+            </td>
+            <td>Notebook</td>
+            <td><a class="btn btn-success" href="verProducto.html" role="button">Ver</a>
+              <a role="button" class="btn btn-info" href="editarProducto.html">Editar</a>
+              <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal">Eliminar</button>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="spinner-border text-info"></div>
+            </td>
+            <td>Led Tv</td>
+            <td><a class="btn btn-success" href="verLed.html" role="button">Ver</a>
+              <a role="button" class="btn btn-info" href="editarProducto.html">Editar</a>
+              <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal">Eliminar</button>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="spinner-border text-info"></div>
+            </td>
+            <td>Cinema HomeTheater</td>
+            <td><a class="btn btn-success" href="verTheater.html" role="button">Ver</a>
+              <a role="button" class="btn btn-info" href="editarProducto.html">Editar</a>
+              <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal">Eliminar</button>
+            </td>
+          </tr>
+        </tbody>
+        <tfoot class="table-primary">
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+        </tfoot>
+      </table>
+
+
+
+    </div>
+  </div>
+  <footer class="py-3 bg-dark fixed-bottom">
+    <div class="container">
+      <p class="m-0 text-center text-white">Ale Luna</p>
+    </div>
+  </footer>
+  
+      <!-- The Modal -->
+      <div class="modal" id="myModal">
+        <div class="modal-dialog">
+          <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+              <h4 class="modal-title">Eliminar</h4>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <!-- Modal body -->
+            <div class="modal-body">
+              ¿Esta seguro de eliminar este producto?
+            </div>
+
+            <!-- Modal footer -->
+            <div class="modal-footer">
+              <button type="button" class="btn btn-success" data-dismiss="modal">Aceptar</button>
+              <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+            </div>
+
+          </div>
+        </div>
+      </div>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js"
+    integrity="sha384-uO3SXW5IuS1ZpFPKugNNWqTZRRglnUJK6UAZ/gxOX80nxEkN9NcGZTftn6RzhGWE"
+    crossorigin="anonymous"></script>
+
+
+</body>
+
+</html>
