@@ -1,13 +1,12 @@
 import React from 'react';
+import Contador from './components/Contador'
 
 
 
 function App () {
     return (
         <>
-        <h1>Primera Aplicacion de React</h1>
-        <button>+</button>
-        <button>-</button>
+        <Contador />
         </>
     );
 
