@@ -52,7 +52,7 @@ const MostrarProducto = () => {
 }
 
 
-const Ejemplo2 = () => {
+const Ejemplo = () => {
     return(
         <div>
             <App>
@@ -62,4 +62,4 @@ const Ejemplo2 = () => {
         </div>
     )
 }
-export default Ejemplo2
+export default Ejemplo
