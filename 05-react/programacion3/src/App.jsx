@@ -2,14 +2,14 @@ import React from 'react';
 // import Contador from './components/Contador';
 // import Menu from './components/Menu';
 // import Parent from './components/Parent';
-import Ejemplo from './components/Ejemplo2'
+import Ejemplo7 from './components/Ejemplo7'
 
 
 
 function App () {
     return (
         <>
-        <Ejemplo />
+        <Ejemplo7 />
 
         {/* <Parent />
         <Contador />
