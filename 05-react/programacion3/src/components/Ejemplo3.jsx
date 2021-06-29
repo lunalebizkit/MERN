@@ -1,26 +1,35 @@
 import React from "react";
-
+const fecha= new Date().toString();
 const Ejemplo= ()=> {
+    const estadoInicial= {resultado: 0,
+       tiempo: fecha };
+
     const reducer= (state, accion)=>{
-        switch (accion.type){
+        console.info(`El estado es ${state.resultado} - y es ejecutado por ${accion.payload}`);
+
+        switch(accion.type) {
             case "SUMAR":
-                return (state + accion.payload);
+                return {...state, resultado: state.resultado + accion.payload};
             case "RESTAR":
-                return (state - accion.payload);
+                return {...state, resultado: state.resultado - accion.payload};
             case "RESETEAR":
-                return estadoInicial;
+                return {...state, resultado: estadoInicial.resultado};
+            case "ACTUALIZAR":
+                return {...state, tiempo: accion.payload }
             default:
                  return state;
         }
     }
-    const estadoInicial= 0;
+   
     const [state, dispatch] = React.useReducer(reducer, estadoInicial);
     return(
         <>
-        <div> Contador : {state} </div>
+        <div> Contador : {state.resultado} </div>
+        <div> Fecha : {state.tiempo} </div>
         <button onClick= {()=> dispatch({type:"SUMAR", payload: 1}) }>Click + </button>
         <button onClick= {()=> dispatch({type:"RESTAR", payload:2}) }>Click - </button>
         <button onClick= {()=> dispatch({ type:"RESETEAR"}) }>Click Reset </button>
+        <button onClick= {()=> dispatch({ type:"ACTUALIZAR", payload: Date().toString()}) }>Fecha Actual </button>
         </>
     )
 }
