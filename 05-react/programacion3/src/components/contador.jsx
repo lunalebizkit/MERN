@@ -11,7 +11,7 @@ const Contador= () => {
     const nombreCompleto= ()=> {
         setNombre("Luna Vega, Alexandro");
     };
-    const volverNombre= function(nombre) {setNombre("Ale");};
+    const volverNombre= function(nombre) {setNombre("Ale")};
     
     
      

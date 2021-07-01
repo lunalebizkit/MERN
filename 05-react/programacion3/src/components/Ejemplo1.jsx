@@ -69,7 +69,7 @@ const Nieto1 = () =>{
         </div>
     )}
 
-const Ejemplo1= ()=> {
+const Ejemplo= ()=> {
     return(
         <div>
             <Padre>
@@ -86,4 +86,4 @@ const Ejemplo1= ()=> {
         </div>
     )
 }
-export default Ejemplo1
+export default Ejemplo
