@@ -1,12 +1,15 @@
+require('dotenv').config();
 const express = require("express");
 const aplicacion= express();
 const cors = require("cors");
 const mongoose = require('mongoose');
 
+//exportamos BaseDatos Mongo
+require('./database')
 const PORT = 4000;
 
-mongoose.Promise = global.Promise;
-mongoose.connect("mongodb://localhost:27017/prog3-2021", { useNewUrlParser: true });
+
+// mongoose.connect("mongodb://localhost:27017/prog3-2021", { useNewUrlParser: true });
 
 aplicacion.use(express.json());
 aplicacion.use(cors());
