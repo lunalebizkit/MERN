@@ -8,9 +8,6 @@ const mongoose = require('mongoose');
 require('./database')
 const PORT = 4000;
 
-
-// mongoose.connect("mongodb://localhost:27017/prog3-2021", { useNewUrlParser: true });
-
 aplicacion.use(express.json());
 aplicacion.use(cors());
 
@@ -33,7 +30,7 @@ const getProductos = async () => {
     });
 }
 
-aplicacion.get("/productos", async (req, res) => {
+aplicacion.get("/equipos", async (req, res) => {
     const productos = await getProductos();
     res.send(productos);
 });

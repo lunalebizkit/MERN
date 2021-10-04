@@ -4,7 +4,7 @@ const CantidadEquipo= ()=>{
     const cantidad= useSelector((state)=> state.equipo.cantidadEquipo)
     return (
         <p>
-            Cantidad: {cantidad}
+            Cantidad de Equipos: {cantidad}
         </p>
     )
 }

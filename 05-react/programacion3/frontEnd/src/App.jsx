@@ -25,12 +25,16 @@ const App =()=> {
                <li>
                   <Link to="/paginaEquipo">Equipos</Link>
                </li>
+               <li>
+                  <Link to="/paginaEquipo">Equipos</Link>
+               </li>
            </ul>
          
            <div className="container">
                <Switch>
                    <Route exact path="/" component={PaginaInicio} />
                    <Route exact path="/contador" component={Contador} />
+                   <Route exact path="/paginaEquipo" component={PaginaEquipo} />
                    <Route exact path="/paginaEquipo" component={PaginaEquipo} />
                </Switch>
            </div>
