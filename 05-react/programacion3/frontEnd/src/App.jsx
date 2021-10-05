@@ -2,7 +2,8 @@ import React from 'react';
 import{ Switch, Route, Link} from "react-router-dom";
 import Contador from './components/Contador';
 import PaginaEquipo from './paginas/paginaEquipo';
-
+import PaginaAgregarEquipo from './paginas/paginaAgregarEquipo';
+import BarraNavegacion from './components/BarraNavegacion'
 // import Menu from './components/Menu';
 // import Parent from './components/Parent';
 //  import Ejemplo from './components/Ejemplo3'
@@ -15,6 +16,7 @@ const App =()=> {
   
     return (
         <>           
+           <BarraNavegacion />
            <ul>
                <li>
                   <Link to="/">Inicio</Link>
@@ -26,7 +28,7 @@ const App =()=> {
                   <Link to="/paginaEquipo">Equipos</Link>
                </li>
                <li>
-                  <Link to="/paginaEquipo">Equipos</Link>
+                  <Link to="/paginaAgregarEquipo">Agregar Equipos</Link>
                </li>
            </ul>
          
@@ -35,7 +37,7 @@ const App =()=> {
                    <Route exact path="/" component={PaginaInicio} />
                    <Route exact path="/contador" component={Contador} />
                    <Route exact path="/paginaEquipo" component={PaginaEquipo} />
-                   <Route exact path="/paginaEquipo" component={PaginaEquipo} />
+                   <Route exact path="/paginaAgregarEquipo" component={PaginaAgregarEquipo} />
                </Switch>
            </div>
         </>
