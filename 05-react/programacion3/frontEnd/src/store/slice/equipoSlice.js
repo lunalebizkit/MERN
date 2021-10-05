@@ -4,7 +4,7 @@ export const initialState= {
     cargando: false,
     listaEquipo: [],
     error: null,
-    cantidadEquipo: 0
+    cantidadEquipos: 0
 };
 export const equipoSlice = createSlice({
     name: 'equipo',
@@ -12,18 +12,18 @@ export const equipoSlice = createSlice({
     extraReducers: {
         [GetEquipo.pending]: (state, action)=>{
             state.cargando = true;
-            state.cantidadEquipo= -1
+            state.cantidadEquipos= -1
         },
         [GetEquipo.fulfilled]: (state, action)=>{
             state.listaEquipo= action.payload.data;
-            state.cantidadEquipo= action.payload.data.length;
+            state.cantidadEquipos= action.payload.data.length;
             state.cargando= false;
             state.error= null
         },
         [GetEquipo.rejected]: (state, action) =>{
             state.listaEquipo= [];
             state.cargando= false;
-            state.cantidadEquipo= 0;
+            state.cantidadEquipos= 0;
             state.error= "No se pudo cargar el equipo"
         }
     }

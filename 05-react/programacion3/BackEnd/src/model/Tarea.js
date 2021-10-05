@@ -2,12 +2,12 @@
 const mongoose = require('mongoose');
 const {Schema} = mongoose;
 
-const tareaSchema = new Schema({
-  nombre: String,
-  descripcion: String,
-  estaFinailzada: { type: Boolean, default: false },
-  createdAt: Date,
-  updatedAt: Date
+const EquipoSchema = new Schema({
+  nombre: {type: String, required: true},
+  deporte: {type: String, required: true} ,
+  // estaFinailzada: { type: Boolean, default: false },
+  // createdAt: Date,
+  // updatedAt: Date
 });
 
-mongoose.model('tareas', tareaSchema);
+module.exports= mongoose.model('Equipos', EquipoSchema);

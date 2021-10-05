@@ -7,11 +7,6 @@ const PaginaEquipo= ()=>{
     const dispatch= useDispatch();
     const equipos= useSelector((state) => state.equipo.listaEquipo);
     const cargando= useSelector((state)=> state.equipo.cargando);
-   /* const [equipo, setEquipo]= useState([]);
-    const obtenerEquipo= async ()=>{
-        const res= await axios.get('http://localhost:4000/equipos');
-        setEquipo(res.data)
-    }*/
     useEffect(()=>{
         dispatch(GetEquipo());
     }, [dispatch])
@@ -25,7 +20,7 @@ const PaginaEquipo= ()=>{
                <td>{equip.nombre}</td>
                <td>{equip.talle}</td>
                <td>{equip.precio}</td>
-               <td><Link to={`/equipo/${equip.id}`}>Editar</Link></td>
+               <td><Link to={`/equipos/${equip.id}`}>Editar</Link></td>
                </tr>
            )
        })
