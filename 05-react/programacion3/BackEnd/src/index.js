@@ -23,11 +23,6 @@ aplicacion.use('/api/tareas', require('./routes/tareaRuta'));
 // require("./routes/tareaRuta")(aplicacion);
 //Static File
 aplicacion.use(express.static(path.join(__dirname, 'public')));
-const equipo = [
-    { id: 1, nombre: "Nike", talle: 34, precio: 15000},
-    { id: 2, nombre: "Adidas", talle: 35, precio: 25000},
-    { id: 3, nombre: "xyz", talle: 35, precio: 25000}
-];
 
 const getProductos = async () => {
     return new Promise((resolve, reject) => {
