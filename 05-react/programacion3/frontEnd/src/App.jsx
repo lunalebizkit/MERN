@@ -9,7 +9,7 @@ import BarraNavegacion from './components/BarraNavegacion'
 //  import Ejemplo from './components/Ejemplo3'
 //  import Ejemplo from './components/Reducer';
 // import Parcial from './components/Parcial';
-
+import AgregarTarea from './paginas/AgregarTarea';
 import PaginaInicio from './paginas/Inicio';
 
 const App =()=> {
@@ -30,6 +30,9 @@ const App =()=> {
                <li>
                   <Link to="/paginaAgregarEquipo">Agregar Equipos</Link>
                </li>
+               <li>
+                  <Link to="/paginaAgregarTarea">Agregar Tarea</Link>
+               </li>
            </ul>
          
            <div className="container">
@@ -38,6 +41,7 @@ const App =()=> {
                    <Route exact path="/contador" component={Contador} />
                    <Route exact path="/paginaEquipo" component={PaginaEquipo} />
                    <Route exact path="/paginaAgregarEquipo" component={PaginaAgregarEquipo} />
+                   <Route exact path="/paginaAgregarTarea" component={AgregarTarea} />
                </Switch>
            </div>
         </>

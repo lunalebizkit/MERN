@@ -1,10 +1,10 @@
-import axios from "axios";
 import React, { useState, useEffect } from "react";
-import M from 'materialize-css';
 import 'materialize-css';
 import { GetEquipo } from "../acciones/equipos";
+import{enviarValor} from '../store/slice/postEquiposSlice'
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
+import CantidadEquipo from "../components/CantidadEquipo";
 const PaginaAgregarEquipo = () => {
     const dispatch= useDispatch()
     const equipos= useSelector((state)=> state.equipo.listaEquipo)
@@ -16,39 +16,23 @@ const PaginaAgregarEquipo = () => {
         const { name, value } = e.target;
         setValor({ ...valor, [name]: value })
     }
-    const handleSubmit =  (e) => {
-             axios({
-            method: 'post',
-            url: 'http://localhost:4000/api/tareas/equipos',
-            data: valor 
-        })
-            .then(res => {
-                console.log(res.data)
-                M.toast({ html: 'I am a toast!' })
-                M.toast({ html: 'Tareas Almacenada' })
-            })
-            .catch(res => console.log(res))
-        e.preventDefault();
-        console.log(valor);
-        setValor({ nombre: '', deporte: '' })
+   
+    const handleSubmit =  (e) => ()=> {        
+        let array= [valor];
+    
+        e.preventDefault(valor)
+         console.log(array)
+         setValor({ nombre: '', deporte: '' })
     }
-    const renderizarTablaEquipos= ()=>{
-        return equipos.map(equipo=>{
-            return(
-                <tr key= {equipo.id}>
+    const renderizarTablaEquipos=()=>{
+        return equipos.map(equipo =>{ 
+        return(           
+                <tr key={equipo.id}>
                     <td>{equipo.nombre}</td>
                     <td>{equipo.deporte}</td>
                     <td><Link to={`/equipos/${equipo.id}`}>Editar</Link></td>
-                </tr>
-            )
-        })
-    }
-    // const traerEquipo = async () => {
-    //     await axios('http://localhost:4000/api/tareas/equipos')
-    //         .then(res => res.data)           
-    // }
-    //  traerEquipo()
-       
+                </tr>       
+    )})}
     const { nombre, deporte } = valor
     return (
         <>
@@ -61,7 +45,6 @@ const PaginaAgregarEquipo = () => {
                                     <div className="row">
                                         <div className="input-field col s12">
                                             <input name="nombre" type="text" value={nombre} onChange={handleChange} placeholder="Agregar Equipo" />
-
                                         </div>
                                     </div>
                                     <div className="row">
@@ -76,6 +59,7 @@ const PaginaAgregarEquipo = () => {
                         </div>
                     </div>
                     <div className="col s7">
+                        <CantidadEquipo />
                         <table className="striped blue">
                             <thead>
                                 <tr>

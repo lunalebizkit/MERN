@@ -1,11 +1,5 @@
 import React, {useState, useEffect} from "react";
 const Inicio = ()=>{
-    useEffect(()=>{
-        console.info("Mount: Mostrando Incio...");
-        return ()=>{
-            console.info("UNMOUNT: Ocultando Incio...");
-        }
-    }, []);
     return <h2>Programacion 3</h2>
 }
 const PaginaInicio = ()=>{
