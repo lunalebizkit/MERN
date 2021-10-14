@@ -24,16 +24,8 @@ aplicacion.use('/api/tareas', require('./routes/tareaRuta'));
 //Static File
 aplicacion.use(express.static(path.join(__dirname, 'public')));
 
-const getProductos = async () => {
-    return new Promise((resolve, reject) => {
-        setTimeout(() => resolve(equipo), 1500);
-    });
-}
 
-// aplicacion.get("/equipos", async (req, res) => {
-//     const productos = await getProductos();
-//     res.send(productos);
-// });
+
 //Starting server
 aplicacion.listen(aplicacion.get('port'), () => {
     console.info(`Iniciando servidor en puerto ${aplicacion.get('port')}`);
