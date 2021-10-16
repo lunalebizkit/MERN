@@ -1,8 +1,6 @@
 import { createAsyncThunk, createSlice} from "@reduxjs/toolkit";
 import axios from "axios";
-import materialize, {toast} from 'materialize-css'
-import { GetEquipo } from "../../acciones/equipos";
-export const editEquipo= createAsyncThunk( 'editarEquipo/editEquipoo', 
+export const editEquipo= createAsyncThunk( 'editarEquipo/editEquipo', 
     async(id, {dispatch})=> await axios.get(`http://localhost:4000/api/tareas/equipos/${id}`));
 
 export const editarEquipoSlice= createSlice({

@@ -1,14 +1,28 @@
-import { createSlice} from "@reduxjs/toolkit";
-import { useDispatch } from "react-redux";
+import { createAsyncThunk, createSlice} from "@reduxjs/toolkit";
 import axios from "axios";
+export const cargarEquipos= createAsyncThunk( 'postEquipos/cargarEquipos', 
+    async(valor)=> await axios.post('http://localhost:4000/api/tareas/equipos', valor))
 export const postEquiposSlice= createSlice({
     name: 'postEquipos',
     initialState: {
         valor: [],
         enviando: false,
-        estado: ''
-    }, 
-    reducers: {
+        estado: '',
+        respuesta: ""
+    },reducer:{
+
+    },
+    extraReducers: {
+        [cargarEquipos.pending]: (state, action)=>{
+            state.estado= "Enviando Datos"
+        },
+        [cargarEquipos.fulfilled]: (state, action)=>{
+            state.estado= "cargado con Exito!"
+            state.respuesta= action.payload.data.status
+        },
+        [cargarEquipos.rejected]: (state)=>{
+            state.estado= "fallo la carga"
+        },
         enviarValor: (state, action) =>{
             state.enviando= "enviando"
             state.valor = action.payload
@@ -16,12 +30,6 @@ export const postEquiposSlice= createSlice({
         }
     }
 });
-// const cargar= async ()=> await axios({
-//     method: 'post',
-//     url: 'http://localhost:4000/api/tareas/equipos',
-//     data: {valor}
-// })
-//     .then(res => res.data)
-//     .catch(res => console.log(res))
+
 export const {enviarValor} = postEquiposSlice.actions
 export default postEquiposSlice.reducer

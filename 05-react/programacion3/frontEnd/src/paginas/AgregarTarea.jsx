@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { agregar } from "../store/slice/tareaSlice";
 import Tarea from "../components/Tarea";
 import TraerTarea from "../components/TraerTarea";

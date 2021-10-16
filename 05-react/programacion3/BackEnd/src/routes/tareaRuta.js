@@ -2,26 +2,64 @@ const mongoose = require('mongoose');
 const Equipos = require('../model/Tarea');
 const express =require('express');
 const rutas= express.Router();
-rutas.get('/equipos', async(req, res)=>{
-    const equipos= await Equipos.find();
+rutas.get('/equipos', async(req, res)=>{        
+     const equipos= await Equipos.find();
     res.json(equipos);
+    });
+rutas.get('/equipos/', async(req, res)=>{
+    try {
+        const {limit} = req.body
+       let equipo= Equipos.find().limit(limit)
+       if (equipo) {
+        res.send(equipo);
+    } else {
+        res.status(404).send({ message: `El equipo con id '${id}' no fue encontrado.` });
+    }
+        res.send(equipo)
+    } catch (error) {
+        console.log(error)
+        res.status(500).send({ message: `Server error.\n\n${e}` });
+    }
+} )
+rutas.get('/equipos/:id', async(req, res)=>{    
+    try {
+        const id = req.params.id;
+        const equipo = await Equipos.findById(id);
+        if (equipo) {
+            res.send(equipo);
+        } else {
+            res.status(404).send({ message: `El equipo con id '${id}' no fue encontrado.` });
+        }
+    } catch (e) {
+        res.status(500).send({ message: `Server error.\n\n${e}` });
+    }
 });
-rutas.get('/equipos/:id', async(req, res)=>{
-   const equipo= await Equipos.findById(req.params.id);
-    res.json(equipo);
-});
+  
 rutas.post('/equipos', async(req, res)=>{
     const{nombre, deporte}=req.body;
    const equipos= new Equipos({nombre, deporte});
    await equipos.save();
     res.json({status: "Equipo guardado"});
 });
-rutas.put('/equipos/:id', async(req, res)=>{
-    const {nombre, deporte}=req.body;
-    const newEquipo= {nombre, deporte};
-    await Equipos.findByIdAndUpdate(req.params.id, newEquipo);
-    res.json({status: "Equipo Acutalizado"})
+rutas.put('/equipos/:_id', async(req, res)=>{
+    const {_id} = req.params
+    const equipoDato = req.body
+    try {
+        let equipo = await Equipos.findOneAndUpdate({ _id }, equipoDato, { new: true });
+        if (!equipo) {
+            res.status(404).send({ message: `Error when update record with id ${_id}.\n\n${e}` })
+        } else {
+            res.status(200).send(equipo);
+        }
+    } catch (err) {
+        if (err.name === 'MongoError') {
+            res.status(409).send({ message: err.message });
+        }
+        res.status(500).send({ message: `Unknown Server Error.\n\n Unknow server error when updating todo for id='${_id}'` });
+    }
+
 });
+  
 rutas.delete('/equipos/:id', async(req, res)=>{
     await Equipos.findByIdAndRemove(req.params.id);
     res.json({status: "Equipo Eliminado"})

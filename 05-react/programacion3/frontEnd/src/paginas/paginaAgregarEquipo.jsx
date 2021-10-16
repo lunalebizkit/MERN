@@ -1,38 +1,58 @@
 import React, { useState, useEffect } from "react";
-import 'materialize-css';
+import { cargarEquipos } from '../store/slice/postEquiposSlice';
 import { GetEquipo } from "../acciones/equipos";
-import{enviarValor} from '../store/slice/postEquiposSlice'
 import { useSelector, useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
 import CantidadEquipo from "../components/CantidadEquipo";
+import TablaEquipos from "../components/TablaEquipos";
+import { editEquipo } from "../store/slice/editEquipoSlice";
+import {actualizarEquipo} from "../store/slice/actualizarEquipo";
+
+
 const PaginaAgregarEquipo = () => {
-    const dispatch= useDispatch()
-    const equipos= useSelector((state)=> state.equipo.listaEquipo)
-    useEffect(()=>{
+    const dispatch = useDispatch()
+    const [valor, setValor] = useState({ nombre: '', deporte: '', _id: '' });
+    const equipoEditar = useSelector(state => state.editarEquipo.equipo)
+    const estadoDel = useSelector(state => state.eliminarEquipo.respuesta)
+    const cargaEquipo = useSelector(state => state.enviarEquipo.estado)
+    const estadoActualizado = useSelector(state => state.actualizarEquipo.estado)
+    useEffect(() => {
         dispatch(GetEquipo())
-    }, [dispatch])
-    const [valor, setValor] = useState({ nombre: '', deporte: '' });    
+    }, [cargaEquipo, dispatch])
+    useEffect(() => {
+        dispatch(GetEquipo())
+    }, [estadoActualizado, dispatch])
+    useEffect(() => {
+        dispatch(GetEquipo())
+    }, [estadoDel, dispatch])
+   useEffect(()=>{
+    const { _id, nombre, deporte } = equipoEditar
+    setValor({nombre, deporte, _id})
+   }, [equipoEditar])
     const handleChange = (e) => {
-        const { name, value } = e.target;
+        const { _id } = equipoEditar
+        if (_id) {
+            const { name, value } = e.target;
         setValor({ ...valor, [name]: value })
+        }
+        const { name, value } = e.target;
+        setValor({ ...valor, [name]: value })   
     }
-   
-    const handleSubmit =  (e) => ()=> {        
-        let array= [valor];
-    
-        e.preventDefault(valor)
-         console.log(array)
-         setValor({ nombre: '', deporte: '' })
+
+    const handleSubmit = (e) => {
+        const { _id, nombre, deporte } = equipoEditar
+        console.log(_id)
+        if (_id) {
+            setValor({nombre, deporte}) 
+            console.log(valor) 
+            dispatch(actualizarEquipo(valor))
+            setValor({ nombre: '', deporte: '', _id: '' })  
+            e.preventDefault(valor)              
+        }else{
+        dispatch(cargarEquipos(valor))
+        setValor({ nombre: '', deporte: '', _id: '' })
+        e.preventDefault(valor)}
     }
-    const renderizarTablaEquipos=()=>{
-        return equipos.map(equipo =>{ 
-        return(           
-                <tr key={equipo.id}>
-                    <td>{equipo.nombre}</td>
-                    <td>{equipo.deporte}</td>
-                    <td><Link to={`/equipos/${equipo.id}`}>Editar</Link></td>
-                </tr>       
-    )})}
+
     const { nombre, deporte } = valor
     return (
         <>
@@ -52,12 +72,14 @@ const PaginaAgregarEquipo = () => {
                                             <input name="deporte" type="text" value={deporte} onChange={handleChange} placeholder="Agregar Deporte" />
 
                                         </div>
-                                    </div>                                   
+                                    </div>
                                     <button type="submit" className="btn light-blue darken-4">Enviar</button>
+                                    {/* <button className="btn lime accent-4">ACTUALIZAR</button> */}
                                 </form>
                             </div>
                         </div>
                     </div>
+
                     <div className="col s7">
                         <CantidadEquipo />
                         <table className="striped blue">
@@ -65,10 +87,10 @@ const PaginaAgregarEquipo = () => {
                                 <tr>
                                     <th>Nombre</th>
                                     <th>Deporte</th>
-                                </tr>                              
+                                </tr>
                             </thead>
                             <tbody>
-                                {renderizarTablaEquipos()}
+                                <TablaEquipos />
                             </tbody>
                         </table>
                     </div>

@@ -1,5 +1,5 @@
 import React from 'react';
-import{ Switch, Route, Link} from "react-router-dom";
+import { Switch, Route, Link } from "react-router-dom";
 import Contador from './components/Contador';
 import PaginaEquipo from './paginas/paginaEquipo';
 import PaginaAgregarEquipo from './paginas/paginaAgregarEquipo';
@@ -11,13 +11,17 @@ import BarraNavegacion from './components/BarraNavegacion'
 // import Parcial from './components/Parcial';
 import AgregarTarea from './paginas/AgregarTarea';
 import PaginaInicio from './paginas/Inicio';
+import 'materialize-css/dist/css/materialize.min.css';
 
-const App =()=> {
-  
-    return (
-        <>           
-           <BarraNavegacion />
-           <ul>
+const App = () => {
+
+   return (
+      <>
+         <header>
+            <BarraNavegacion />
+         </header>
+         <main>
+            <ul>
                <li>
                   <Link to="/">Inicio</Link>
                </li>
@@ -33,20 +37,20 @@ const App =()=> {
                <li>
                   <Link to="/paginaAgregarTarea">Agregar Tarea</Link>
                </li>
-           </ul>
-         
-           <div className="container">
-               <Switch>
-                   <Route exact path="/" component={PaginaInicio} />
-                   <Route exact path="/contador" component={Contador} />
-                   <Route exact path="/paginaEquipo" component={PaginaEquipo} />
-                   <Route exact path="/paginaAgregarEquipo" component={PaginaAgregarEquipo} />
-                   <Route exact path="/paginaAgregarTarea" component={AgregarTarea} />
-               </Switch>
-           </div>
-        </>
-    
-    );
+            </ul>
+         </main>
+         <div className="container" >
+            <Switch>
+               <Route exact path="/" component={PaginaInicio} />
+               <Route exact path="/contador" component={Contador} />
+               <Route exact path="/paginaEquipo" component={PaginaEquipo} />
+               <Route exact path="/paginaAgregarEquipo" component={PaginaAgregarEquipo} />
+               <Route exact path="/paginaAgregarTarea" component={AgregarTarea} />
+            </Switch>
+         </div>
+      </>
+
+   );
 
 };
 export default App;
