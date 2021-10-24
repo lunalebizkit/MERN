@@ -22,7 +22,8 @@ export const store = configureStore({
     getDefaultMiddleware({
       serializableCheck: {
         // Ignore these action types
-        ignoredActions: ['equipo/GetEquipo/fulfilled', 'traerTarea/traerTareaDB/fulfilled', 'postEquipos/cargarEquipos/fulfilled'],
+        ignoredActions: ['equipo/GetEquipo/fulfilled', 'traerTarea/traerTareaDB/fulfilled',
+         'postEquipos/cargarEquipos/fulfilled', 'editarEquipo/editEquipo/fulfilled', 'eliminarEquipo/delEquipo/fulfilled'],
         // Ignore these field paths in all actions
         ignoredActionPaths: ['meta.arg', 'payload.timestamp'],
         // Ignore these paths in the state

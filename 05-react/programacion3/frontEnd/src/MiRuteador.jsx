@@ -1,8 +1,7 @@
-import { Switch, Route, Link } from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
 import Contador from './components/Contador';
 import PaginaEquipo from './paginas/paginaEquipo';
 import PaginaAgregarEquipo from './paginas/paginaAgregarEquipo';
-import BarraNavegacion from './components/BarraNavegacion';
 import React from 'react';
 import AgregarTarea from './paginas/AgregarTarea';
 import PaginaInicio from './paginas/Inicio';

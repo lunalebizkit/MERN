@@ -2,6 +2,11 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { editEquipo } from "../store/slice/editEquipoSlice";
 import { delEquipo } from "../store/slice/delEquipoSlice";
+import TableCell from '@mui/material/TableCell';
+import TableRow from '@mui/material/TableRow';
+import DeleteIcon from '@mui/icons-material/Delete'
+import EditIcon from '@mui/icons-material/Edit';
+import IconButton from '@mui/material/IconButton';
 const TablaEquipos= ()=>{
     const dispatch= useDispatch()
     const equipos= useSelector((state)=> state.equipo.listaEquipo)
@@ -13,12 +18,14 @@ const TablaEquipos= ()=>{
     const renderizarTablaEquipos=()=>{
         return equipos.map(({nombre, deporte, _id}) =>{ 
         return(           
-                <tr key={_id}>
-                    <td>{nombre}</td>
-                    <td>{deporte}</td>
-                    <td><button onClick={()=> dispatch(editEquipo(_id))} className="btn-floating btn-small waves-effect waves-light"><i className="material-icons right">edit</i></button></td>
-                    <td><button onClick={()=>eliminar(_id)} className="btn-floating btn-small waves-effect waves-light red"><i className="material-icons right">delete</i></button></td>
-                </tr>       
+                <TableRow key={_id}>
+                    <TableCell>{nombre}</TableCell>
+                    <TableCell>{deporte}</TableCell>
+                    <TableCell><IconButton color= "secondary"
+                         onClick={()=> dispatch(editEquipo(_id))} >
+                            <EditIcon /></IconButton>
+                    <IconButton onClick={()=>eliminar(_id)} color="error" ><DeleteIcon /></IconButton></TableCell>
+                </TableRow>       
     )})}
     return(
         <>

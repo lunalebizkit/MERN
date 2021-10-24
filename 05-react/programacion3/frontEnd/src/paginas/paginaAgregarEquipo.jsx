@@ -1,20 +1,36 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { cargarEquipos } from '../store/slice/postEquiposSlice';
 import { GetEquipo } from "../acciones/equipos";
 import { useSelector, useDispatch } from "react-redux";
 import CantidadEquipo from "../components/CantidadEquipo";
 import TablaEquipos from "../components/TablaEquipos";
-import { editEquipo } from "../store/slice/editEquipoSlice";
-import {actualizarEquipo} from "../store/slice/actualizarEquipo";
-
+import { actualizarEquipo } from "../store/slice/actualizarEquipo";
+import * as React from 'react';
+import Paper from '@mui/material/Paper';
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableCell from '@mui/material/TableCell';
+import TableContainer from '@mui/material/TableContainer';
+import TableHead from '@mui/material/TableHead';
+import Stack from '@mui/material/Stack';
+import Input from '@mui/material/Input';
+import Button from '@mui/material/Button';
+import SaveIcon from '@mui/icons-material/Save';
+import SendIcon from '@mui/icons-material/Send';
+import TableRow from '@mui/material/TableRow';
+import Grid from '@mui/material/Grid';
+import Box from '@mui/material/Box';
 
 const PaginaAgregarEquipo = () => {
+    
     const dispatch = useDispatch()
     const [valor, setValor] = useState({ nombre: '', deporte: '', _id: '' });
+    const [visible, setVisible] = useState(false);
     const equipoEditar = useSelector(state => state.editarEquipo.equipo)
     const estadoDel = useSelector(state => state.eliminarEquipo.respuesta)
     const cargaEquipo = useSelector(state => state.enviarEquipo.estado)
-    const estadoActualizado = useSelector(state => state.actualizarEquipo.estado)
+    const {cantidadEquipos} = useSelector(state => state.equipo)
+    const estadoActualizado = useSelector(state => state.actualizarEquipo.estado);
     useEffect(() => {
         dispatch(GetEquipo())
     }, [cargaEquipo, dispatch])
@@ -24,78 +40,82 @@ const PaginaAgregarEquipo = () => {
     useEffect(() => {
         dispatch(GetEquipo())
     }, [estadoDel, dispatch])
-   useEffect(()=>{
-    const { _id, nombre, deporte } = equipoEditar
-    setValor({nombre, deporte, _id})
-   }, [equipoEditar])
+    useEffect(() => {
+        const { _id, nombre, deporte } = equipoEditar;
+        setValor({ nombre, deporte, _id });
+        setVisible(!visible)
+    }, [equipoEditar])
     const handleChange = (e) => {
         const { _id } = equipoEditar
         if (_id) {
             const { name, value } = e.target;
-        setValor({ ...valor, [name]: value })
+            setValor({ ...valor, [name]: value })
         }
         const { name, value } = e.target;
-        setValor({ ...valor, [name]: value })   
+        setValor({ ...valor, [name]: value })
     }
 
     const handleSubmit = (e) => {
-        const { _id, nombre, deporte } = equipoEditar
-        console.log(_id)
+        const { _id } = valor
         if (_id) {
-            setValor({nombre, deporte}) 
-            console.log(valor) 
             dispatch(actualizarEquipo(valor))
-            setValor({ nombre: '', deporte: '', _id: '' })  
-            e.preventDefault(valor)              
-        }else{
-        dispatch(cargarEquipos(valor))
-        setValor({ nombre: '', deporte: '', _id: '' })
-        e.preventDefault(valor)}
+            setValor({ nombre: '', deporte: '', _id: '' })
+            e.preventDefault(valor)
+            setVisible(!visible)
+        } else {
+            dispatch(cargarEquipos(valor))
+            setValor({ nombre: '', deporte: '', _id: '' })
+            e.preventDefault(valor)
+        }
     }
 
     const { nombre, deporte } = valor
     return (
         <>
-            <div className="container">
-                <div className="row">
-                    <div className="col s5">
-                        <div className="card">
-                            <div className="card-content">
-                                <form onSubmit={handleSubmit} action="">
-                                    <div className="row">
-                                        <div className="input-field col s12">
-                                            <input name="nombre" type="text" value={nombre} onChange={handleChange} placeholder="Agregar Equipo" />
-                                        </div>
-                                    </div>
-                                    <div className="row">
-                                        <div className="input-field col s12">
-                                            <input name="deporte" type="text" value={deporte} onChange={handleChange} placeholder="Agregar Deporte" />
+            <Grid container spacing={3}>
 
-                                        </div>
-                                    </div>
-                                    <button type="submit" className="btn light-blue darken-4">Enviar</button>
-                                    {/* <button className="btn lime accent-4">ACTUALIZAR</button> */}
-                                </form>
-                            </div>
-                        </div>
-                    </div>
+                <Grid item xs={4} sx={{ p: 5 }} >
+                    <Paper>
+                        <Box component="form"
+                            sx={{
+                                '& > :not(style)': { m: 1 },
+                            }}
+                            noValidate
+                            autoComplete="off" onSubmit={handleSubmit}>
 
-                    <div className="col s7">
-                        <CantidadEquipo />
-                        <table className="striped blue">
-                            <thead>
-                                <tr>
-                                    <th>Nombre</th>
-                                    <th>Deporte</th>
-                                </tr>
-                            </thead>
-                            <tbody>
+                            <Input name="nombre" type="text" value={nombre} onChange={handleChange} placeholder="Agregar Equipo" />
+
+
+                            <Input name="deporte" type="text" value={deporte} onChange={handleChange} placeholder="Agregar Deporte" />
+
+
+                            {visible && <Button variant="contained" endIcon={<SendIcon />} type="submit" >Enviar</Button>}
+                           {!visible && <Button type="submit" startIcon={<SaveIcon />} color="secondary" variant= "contained" >ACTUALIZAR</Button>}
+
+                        </Box>
+
+                    </Paper>
+                </Grid>
+
+                <Grid item xs={8}>
+                    <CantidadEquipo />
+                    <TableContainer sx={{ maxHeight: 440, }} >
+                        <Table stickyHeader aria-label="sticky table">
+                            <TableHead >
+                                <TableRow >
+                                    <TableCell>Nombre</TableCell>
+                                    <TableCell>Deporte</TableCell>
+                                    <TableCell>Acciones</TableCell>
+                                </TableRow>
+                            </TableHead>
+                            <TableBody>
                                 <TablaEquipos />
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
+                            </TableBody>
+                        </Table>
+                    </TableContainer>
+                </Grid>
+
+            </Grid>
         </>
     )
 

@@ -1,27 +1,36 @@
 const mongoose = require('mongoose');
 const Equipos = require('../model/Tarea');
-const express =require('express');
-const rutas= express.Router();
-rutas.get('/equipos', async(req, res)=>{        
-     const equipos= await Equipos.find();
-    res.json(equipos);
-    });
-rutas.get('/equipos/', async(req, res)=>{
-    try {
-        const {limit} = req.body
-       let equipo= Equipos.find().limit(limit)
-       if (equipo) {
-        res.send(equipo);
-    } else {
-        res.status(404).send({ message: `El equipo con id '${id}' no fue encontrado.` });
+const express = require('express');
+const rutas = express.Router();
+// rutas.get('/equipos', async (req, res) => {
+
+//     ;
+// });
+rutas.get('/equipos/', async (req, res) => {
+    const { limit, skip } = req.query
+    console.info(req.query)
+    if (limit) {
+        console.info(typeof limit)
+        console.info(limit)
+        try {
+            let equipo =await Equipos.find().skip(skip).limit(3)
+            if (equipo) {
+                res.send(equipo)
+            };          
+        } catch (error) {
+            console.log(error)
+            res.status(500).send({ message: `Server error.\n\n${error}` });
+        }
+    }else{
+        try {
+            const equipos = await Equipos.find().limit()
+            res.send(equipos)
+        } catch (error) {
+            console.info(error)
+        }
     }
-        res.send(equipo)
-    } catch (error) {
-        console.log(error)
-        res.status(500).send({ message: `Server error.\n\n${e}` });
-    }
-} )
-rutas.get('/equipos/:id', async(req, res)=>{    
+})
+rutas.get('/equipos/:id', async (req, res) => {
     try {
         const id = req.params.id;
         const equipo = await Equipos.findById(id);
@@ -34,15 +43,15 @@ rutas.get('/equipos/:id', async(req, res)=>{
         res.status(500).send({ message: `Server error.\n\n${e}` });
     }
 });
-  
-rutas.post('/equipos', async(req, res)=>{
-    const{nombre, deporte}=req.body;
-   const equipos= new Equipos({nombre, deporte});
-   await equipos.save();
-    res.json({status: "Equipo guardado"});
+
+rutas.post('/equipos', async (req, res) => {
+    const { nombre, deporte } = req.body;
+    const equipos = new Equipos({ nombre, deporte });
+    await equipos.save();
+    res.json({ status: "Equipo guardado" });
 });
-rutas.put('/equipos/:_id', async(req, res)=>{
-    const {_id} = req.params
+rutas.put('/equipos/:_id', async (req, res) => {
+    const { _id } = req.params
     const equipoDato = req.body
     try {
         let equipo = await Equipos.findOneAndUpdate({ _id }, equipoDato, { new: true });
@@ -59,10 +68,10 @@ rutas.put('/equipos/:_id', async(req, res)=>{
     }
 
 });
-  
-rutas.delete('/equipos/:id', async(req, res)=>{
+
+rutas.delete('/equipos/:id', async (req, res) => {
     await Equipos.findByIdAndRemove(req.params.id);
-    res.json({status: "Equipo Eliminado"})
+    res.json({ status: "Equipo Eliminado" })
 });
 // const tareaRuta = (app) => {
 //     app.get("/api/tareas", async (req, res) => {
@@ -125,7 +134,7 @@ rutas.delete('/equipos/:id', async(req, res)=>{
 
 //     });
 
-    
+
 //     app.put("/api/tareas/:id", async (req, res) => {
 
 //         const id = req.params.id;
@@ -154,9 +163,9 @@ rutas.delete('/equipos/:id', async(req, res)=>{
 //     app.put("/api/tareas/:id/cambiar-finalizada", async (req, res) => {
 
 //         const id = req.params.id;
-        
+
 //         const tarea = await Tarea.findOne({ _id: id });
-        
+
 //         if (!tarea) {
 //             return res.status(404).send({ message: `Error when update record with id ${id}.\n\n${e}` })
 //         }
@@ -169,7 +178,7 @@ rutas.delete('/equipos/:id', async(req, res)=>{
 //         } else {
 //             res.status(404).send({ message: `Todo with id '${id}' is not found.` })
 //         }
-            
+
 //     });
 
 //     app.delete("/api/tareas/:id", async (req, res) => {
@@ -187,5 +196,5 @@ rutas.delete('/equipos/:id', async(req, res)=>{
 //     });
 
 // };
-module.exports= rutas
+module.exports = rutas
 // module.exports = tareaRuta;
