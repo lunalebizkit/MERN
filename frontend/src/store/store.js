@@ -20,15 +20,16 @@ export const store = configureStore({
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
-      serializableCheck: {
-        // Ignore these action types
-        ignoredActions: ['equipo/GetEquipo/fulfilled', 'traerTarea/traerTareaDB/fulfilled',
-         'postEquipos/cargarEquipos/fulfilled', 'editarEquipo/editEquipo/fulfilled', 'eliminarEquipo/delEquipo/fulfilled'],
-        // Ignore these field paths in all actions
-        ignoredActionPaths: ['meta.arg', 'payload.timestamp'],
-        // Ignore these paths in the state
-        ignoredPaths: ['items.dates'],
-      },
+      serializableCheck: false,
+      // serializableCheck: {
+      //   // Ignore these action types
+      //   ignoredActions: ['equipo/GetEquipo/fulfilled', 'traerTarea/traerTareaDB/fulfilled',
+      //    'postEquipos/cargarEquipos/fulfilled', 'editarEquipo/editEquipo/fulfilled', 'eliminarEquipo/delEquipo/fulfilled'],
+      //   // Ignore these field paths in all actions
+      //   ignoredActionPaths: ['meta.arg', 'payload.timestamp'],
+      //   // Ignore these paths in the state
+      //   ignoredPaths: ['items.dates'],
+      // },
     }),
 
 });

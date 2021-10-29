@@ -16,6 +16,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import { mainListItems } from './listItems';
 import MiRuteador from '../../MiRuteador';
+import CantidadEquipo from "../../components/CantidadEquipo";
 const drawerWidth = 240;
 
 const AppBar = styled(MuiAppBar, {
@@ -101,7 +102,9 @@ function DashboardContent() {
             >
               AppAsionados
             </Typography>
-          </Toolbar>
+            <CantidadEquipo />
+          </Toolbar> 
+          
         </AppBar>
         <Drawer variant="permanent" open={open}>
           <Toolbar

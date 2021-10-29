@@ -25,11 +25,10 @@ const PaginaAgregarEquipo = () => {
     
     const dispatch = useDispatch()
     const [valor, setValor] = useState({ nombre: '', deporte: '', _id: '' });
-    const [visible, setVisible] = useState(false);
+    const [visible, setVisible] = useState(true);
     const equipoEditar = useSelector(state => state.editarEquipo.equipo)
     const estadoDel = useSelector(state => state.eliminarEquipo.respuesta)
     const cargaEquipo = useSelector(state => state.enviarEquipo.estado)
-    const {cantidadEquipos} = useSelector(state => state.equipo)
     const estadoActualizado = useSelector(state => state.actualizarEquipo.estado);
     useEffect(() => {
         dispatch(GetEquipo())
@@ -43,16 +42,21 @@ const PaginaAgregarEquipo = () => {
     useEffect(() => {
         const { _id, nombre, deporte } = equipoEditar;
         setValor({ nombre, deporte, _id });
-        setVisible(!visible)
+        if(_id != null) {
+            setVisible(false)    
+        }       
     }, [equipoEditar])
+
     const handleChange = (e) => {
         const { _id } = equipoEditar
         if (_id) {
             const { name, value } = e.target;
             setValor({ ...valor, [name]: value })
+            
         }
         const { name, value } = e.target;
         setValor({ ...valor, [name]: value })
+        
     }
 
     const handleSubmit = (e) => {
@@ -61,7 +65,7 @@ const PaginaAgregarEquipo = () => {
             dispatch(actualizarEquipo(valor))
             setValor({ nombre: '', deporte: '', _id: '' })
             e.preventDefault(valor)
-            setVisible(!visible)
+             setVisible(!visible)
         } else {
             dispatch(cargarEquipos(valor))
             setValor({ nombre: '', deporte: '', _id: '' })
@@ -89,8 +93,8 @@ const PaginaAgregarEquipo = () => {
                             <Input name="deporte" type="text" value={deporte} onChange={handleChange} placeholder="Agregar Deporte" />
 
 
-                            {visible && <Button variant="contained" endIcon={<SendIcon />} type="submit" >Enviar</Button>}
-                           {!visible && <Button type="submit" startIcon={<SaveIcon />} color="secondary" variant= "contained" >ACTUALIZAR</Button>}
+                           {visible ? <Button variant="contained" endIcon={<SendIcon />} type="submit" >Enviar</Button>
+                           : <Button type="submit" startIcon={<SaveIcon />} color="secondary" variant= "contained" >ACTUALIZAR</Button>}
 
                         </Box>
 
