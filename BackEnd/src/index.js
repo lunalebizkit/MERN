@@ -11,15 +11,16 @@ require('./database')
 //Setting
 aplicacion.set('port', process.env.PORT || 4000)
 aplicacion.use(express.json());
-aplicacion.use(morgan('dev'));
+aplicacion.use(morgan('dev')); //middelware de expresss
 aplicacion.use(cors());
 
 // Importamos los modelos
-require("./model/Tarea");
+require("./model/Equipos");
 
 
 // Importamos las rutas
-aplicacion.use('/api/tareas', require('./routes/tareaRuta'));
+aplicacion.use('/api/equipos', require('./routes/equiposRuta'));
+aplicacion.use('/api/usuarios', require('./routes/usuariosRuta'));
 // require("./routes/tareaRuta")(aplicacion);
 //Static File
 aplicacion.use(express.static(path.join(__dirname, 'public')));

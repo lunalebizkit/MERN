@@ -1,11 +1,6 @@
-const mongoose = require('mongoose');
-const Equipos = require('../model/Tarea');
+const Equipos = require('../model/Equipos');
 const express = require('express');
 const rutas = express.Router();
-// rutas.get('/equipos', async (req, res) => {
-
-//     ;
-// });
 rutas.get('/equipos/', async (req, res) => {
     const { limit, skip } = req.query
     console.info(req.query)

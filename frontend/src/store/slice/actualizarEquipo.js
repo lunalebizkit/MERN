@@ -3,7 +3,7 @@ import { createAsyncThunk, createSlice} from "@reduxjs/toolkit";
 export const actualizarEquipo= createAsyncThunk('actualizarEquip/actualizarEquipo',
  async(valor)=>{
  const {_id, nombre, deporte}= valor;
- await axios.put(`http://localhost:4000/api/tareas/equipos/${_id}`,{
+ await axios.put(`http://localhost:4000/api/equipos/equipos/${_id}`,{
      nombre,
      deporte
  })})      
