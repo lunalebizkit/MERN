@@ -6,7 +6,9 @@ const URI= process.env.MONGODB_URI ?
             : 'mongodb://localhost/databasetest';
 mongo.connect(URI, {
     useNewUrlParser: true,
-    /*useCreateIndex: true*/
+    useUnifiedTopology: true,
+    /*useFindAndModify: true,
+    useCreateIndex: true*/
 });
 const conexion= mongo.connection;
 conexion.once('open', ()=>{

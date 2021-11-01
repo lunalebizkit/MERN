@@ -6,7 +6,8 @@ const cors = require("cors");
 const path= require('path');
 //exportamos BaseDatos Mongo
 require('./database')
-
+const crearRoles =require('./libs/initialSetup')
+crearRoles()
 
 //Setting
 aplicacion.set('port', process.env.PORT || 4000)
@@ -16,7 +17,6 @@ aplicacion.use(cors());
 
 // Importamos los modelos
 require("./model/Equipos");
-
 
 // Importamos las rutas
 aplicacion.use('/api/equipos', require('./routes/equiposRuta'));
