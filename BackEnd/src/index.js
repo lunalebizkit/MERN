@@ -6,8 +6,8 @@ const cors = require("cors");
 const path= require('path');
 //exportamos BaseDatos Mongo
 require('./database')
-const crearRoles =require('./libs/initialSetup')
-crearRoles()
+// const crearRoles =require('./libs/initialSetup')
+// crearRoles()
 
 //Setting
 aplicacion.set('port', process.env.PORT || 4000)

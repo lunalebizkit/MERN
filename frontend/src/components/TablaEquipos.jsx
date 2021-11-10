@@ -1,11 +1,13 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
+import {Link as RouterLink} from 'react-router-dom';
 import { editEquipo } from "../store/slice/editEquipoSlice";
 import { delEquipo } from "../store/slice/delEquipoSlice";
 import TableCell from '@mui/material/TableCell';
 import TableRow from '@mui/material/TableRow';
 import DeleteIcon from '@mui/icons-material/Delete'
 import EditIcon from '@mui/icons-material/Edit';
+import GroupAddIcon from '@mui/icons-material/GroupAdd';
 import IconButton from '@mui/material/IconButton';
 const TablaEquipos= ()=>{
     const dispatch= useDispatch()
@@ -24,7 +26,11 @@ const TablaEquipos= ()=>{
                     <TableCell><IconButton color= "secondary"
                          onClick={()=> dispatch(editEquipo(_id))} >
                             <EditIcon /></IconButton>
-                    <IconButton onClick={()=>eliminar(_id)} color="error" ><DeleteIcon /></IconButton></TableCell>
+                        <IconButton onClick={()=>eliminar(_id)} color="error" ><DeleteIcon /></IconButton>
+                        <IconButton color="primary" component={RouterLink} to={'AgregarJugador/' + _id}>
+                            < GroupAddIcon/>
+                        </IconButton>
+                    </TableCell>
                 </TableRow>       
     )})}
     return(

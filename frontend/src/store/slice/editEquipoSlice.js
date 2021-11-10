@@ -11,6 +11,11 @@ export const editarEquipoSlice= createSlice({
         estado: ''
     
     },
+    reducers:{
+        limpiar: (state)=>{
+            state.equipo= []
+        }
+    },
     extraReducers: {
         [editEquipo.pending]: (state, action)=>{
             state.estado= "Enviando Datos"
@@ -25,3 +30,4 @@ export const editarEquipoSlice= createSlice({
     }
 });
 export default editarEquipoSlice.reducer
+export const {limpiar}= editarEquipoSlice.actions

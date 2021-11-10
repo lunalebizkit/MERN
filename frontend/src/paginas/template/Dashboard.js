@@ -11,7 +11,6 @@ import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
-import Paper from '@mui/material/Paper';
 import MenuIcon from '@mui/icons-material/Menu';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import { mainListItems } from './listItems';
@@ -102,14 +101,14 @@ function DashboardContent() {
             >
               AppAsionados
             </Typography>
-            <CantidadEquipo />
-          </Toolbar> 
-          
+            <Typography color="inherit"><CantidadEquipo /> </Typography>
+            
+          </Toolbar>        
         </AppBar>
         <Drawer variant="permanent" open={open}>
           <Toolbar
             sx={{
-              display: 'flex',
+              display: 'flex ',
               alignItems: 'center',
               justifyContent: 'flex-end',
               px: [1],
@@ -138,11 +137,11 @@ function DashboardContent() {
         >
            <Toolbar /> 
           <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
-            <Grid container spacing={3}>
-              {/* Chart */}
-              <Grid item xs={12} md={8} lg={9}>
-               <MiRuteador />
-              </Grid>       
+            <Grid container spacing={1}>
+            <MiRuteador />
+              {/* <Grid item xs={12} md={8} lg={9}>
+               
+              </Grid>  */}
             </Grid>
           
           </Container>

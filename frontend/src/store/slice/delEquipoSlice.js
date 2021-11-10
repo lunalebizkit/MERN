@@ -6,8 +6,6 @@ export const delEquipo= createAsyncThunk( 'eliminarEquipo/delEquipo',
 export const deleteEquipoSlice= createSlice({
     name: 'eliminarEquipo',
     initialState: {
-        valor: [],
-        enviando: false,
         estado: '',
         respuesta: []
     
