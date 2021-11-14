@@ -7,6 +7,8 @@ import TraerTareaReducer from './slice/traerTareaSlice';
 import EliminarEquipoReducer from './slice/delEquipoSlice';
 import EditarEquipoReducer from './slice/editEquipoSlice';
 import  actualizarEquipoReducer from './slice/actualizarEquipo';
+import traerJugadoresReducer from './slice/traerJugadoresSlice';
+import crearJugadorReducer from './slice/crearJugadorSlice';
 export const store = configureStore({
   reducer: {
     contador: counterReducer,
@@ -16,20 +18,13 @@ export const store = configureStore({
     traerTarea: TraerTareaReducer,
     eliminarEquipo: EliminarEquipoReducer,
     editarEquipo: EditarEquipoReducer,
-    actualizarEquipo: actualizarEquipoReducer
+    actualizarEquipo: actualizarEquipoReducer,
+    jugador: traerJugadoresReducer,
+    crearJugador: crearJugadorReducer
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       serializableCheck: false,
-      // serializableCheck: {
-      //   // Ignore these action types
-      //   ignoredActions: ['equipo/GetEquipo/fulfilled', 'traerTarea/traerTareaDB/fulfilled',
-      //    'postEquipos/cargarEquipos/fulfilled', 'editarEquipo/editEquipo/fulfilled', 'eliminarEquipo/delEquipo/fulfilled'],
-      //   // Ignore these field paths in all actions
-      //   ignoredActionPaths: ['meta.arg', 'payload.timestamp'],
-      //   // Ignore these paths in the state
-      //   ignoredPaths: ['items.dates'],
-      // },
     }),
 
 });

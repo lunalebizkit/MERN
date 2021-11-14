@@ -16,6 +16,7 @@ import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import { mainListItems } from './listItems';
 import MiRuteador from '../../MiRuteador';
 import CantidadEquipo from "../../components/CantidadEquipo";
+import Title from './Title'
 const drawerWidth = 240;
 
 const AppBar = styled(MuiAppBar, {
@@ -72,9 +73,9 @@ function DashboardContent() {
 
   return (
     <ThemeProvider theme={mdTheme}>
-      <Box sx={{ display: 'flex' }}>
+      <Box sx={{ display: 'flex'}}>
         <CssBaseline />
-        <AppBar position="absolute" open={open}>
+        <AppBar position="absolute" open={open}  sx={{bgcolor: "#212121",}}> {/*barra principal*/} 
           <Toolbar
             sx={{
               pr: '24px', // keep right padding when drawer closed
@@ -101,10 +102,11 @@ function DashboardContent() {
             >
               AppAsionados
             </Typography>
-            <Typography color="inherit"><CantidadEquipo /> </Typography>
-            
+            <Typography color="inherit"><CantidadEquipo />
+            </Typography>            
           </Toolbar>        
         </AppBar>
+
         <Drawer variant="permanent" open={open}>
           <Toolbar
             sx={{
@@ -112,8 +114,10 @@ function DashboardContent() {
               alignItems: 'center',
               justifyContent: 'flex-end',
               px: [1],
-            }}
-          >
+            }}>
+              <Box align='center'>
+            <Title children='Menu'/>
+            </Box>
             <IconButton onClick={toggleDrawer}>
               <ChevronLeftIcon />
             </IconButton>
@@ -136,13 +140,9 @@ function DashboardContent() {
           }}
         >
            <Toolbar /> 
-          <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
-            <Grid container spacing={1}>
-            <MiRuteador />
-              {/* <Grid item xs={12} md={8} lg={9}>
-               
-              </Grid>  */}
-            </Grid>
+          <Container sx={{ mt: 4, mb: 4, height: '100vh', }}>           
+         
+            <MiRuteador />  
           
           </Container>
         </Box>

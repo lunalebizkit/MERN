@@ -20,7 +20,7 @@ export const mainListItems = (
       <ListItemIcon>
         <DashboardIcon />
       </ListItemIcon>
-      <Link to="/paginaAgregarEquipo">Agregar Equipo</Link>
+      <Link to="/paginaAgregarEquipo">Equipos</Link>
     </ListItem>
     <ListItem button>
       <ListItemIcon>

@@ -9,7 +9,7 @@ import DeleteIcon from '@mui/icons-material/Delete'
 import EditIcon from '@mui/icons-material/Edit';
 import GroupAddIcon from '@mui/icons-material/GroupAdd';
 import IconButton from '@mui/material/IconButton';
-const TablaEquipos= ()=>{
+const FilasTablaEquipos= ()=>{
     const dispatch= useDispatch()
     const equipos= useSelector((state)=> state.equipo.listaEquipo)
     const eliminar= (id)=>{
@@ -18,16 +18,17 @@ const TablaEquipos= ()=>{
         }
     }
     const renderizarTablaEquipos=()=>{
-        return equipos.map(({nombre, deporte, _id}) =>{ 
+        return equipos.map(({nombre, deporte, _id, jugadores}) =>{ 
         return(           
                 <TableRow key={_id}>
-                    <TableCell>{nombre}</TableCell>
+                    <TableCell>{nombre}</TableCell>                   
                     <TableCell>{deporte}</TableCell>
+                    <TableCell> {jugadores.length}</TableCell>
                     <TableCell><IconButton color= "secondary"
                          onClick={()=> dispatch(editEquipo(_id))} >
                             <EditIcon /></IconButton>
                         <IconButton onClick={()=>eliminar(_id)} color="error" ><DeleteIcon /></IconButton>
-                        <IconButton color="primary" component={RouterLink} to={'AgregarJugador/' + _id}>
+                        <IconButton color="primary" component={RouterLink} to={'AgregarJugador/' + _id} >
                             < GroupAddIcon/>
                         </IconButton>
                     </TableCell>
@@ -39,4 +40,4 @@ const TablaEquipos= ()=>{
         </>
     )
 }
-export default TablaEquipos
+export default FilasTablaEquipos
