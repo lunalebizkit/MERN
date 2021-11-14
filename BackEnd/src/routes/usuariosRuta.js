@@ -18,7 +18,7 @@ rutas.post('/signup', async (req, res) => {
     } else {
         const rol = await Roles.findOne({ nombre: "usuario" })
         nuevoUsuario.roles = [rol._id]
-    }
+    } 
 
     const usuarioGuardado = await nuevoUsuario.save();
     const token = jwt.sign({ id: usuarioGuardado._id }, SECRET, {

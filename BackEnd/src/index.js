@@ -21,6 +21,7 @@ require("./model/Equipos");
 // Importamos las rutas
 aplicacion.use('/api/equipos', require('./routes/equiposRuta'));
 aplicacion.use('/api/usuarios', require('./routes/usuariosRuta'));
+aplicacion.use('/api/jugador', require('./routes/jugadorRuta'));
 // require("./routes/tareaRuta")(aplicacion);
 //Static File
 aplicacion.use(express.static(path.join(__dirname, 'public')));

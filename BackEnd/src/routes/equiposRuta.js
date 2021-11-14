@@ -3,10 +3,8 @@ const express = require('express');
 const rutas = express.Router();
 rutas.get('/equipos/', async (req, res) => {
     const { limit, skip } = req.query
-    console.info(req.query)
     if (limit) {
-        console.info(typeof limit)
-        console.info(limit)
+    
         try {
             let equipo =await Equipos.find().skip(skip).limit(3)
             if (equipo) {
