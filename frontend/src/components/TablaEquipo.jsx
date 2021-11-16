@@ -12,7 +12,7 @@ import Typography from '@mui/material/Typography'
 export default function TablaEquipo() {
     return (
 
-        <TableContainer sx={{ maxHeight: 400, }} color="secondary" component={Paper} >
+        <TableContainer sx={{ maxHeight: 400, bgcolor: '#bbdefb'}} color="secondary" component={Paper} >
             <Table stickyHeader aria-label="sticky table">
                 <TableHead >
                     <TableRow >

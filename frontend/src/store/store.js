@@ -9,6 +9,7 @@ import EditarEquipoReducer from './slice/editEquipoSlice';
 import  actualizarEquipoReducer from './slice/actualizarEquipo';
 import traerJugadoresReducer from './slice/traerJugadoresSlice';
 import crearJugadorReducer from './slice/crearJugadorSlice';
+import UsuarioReducer from './slice/regsitrarUsuarioSlice'
 export const store = configureStore({
   reducer: {
     contador: counterReducer,
@@ -20,7 +21,8 @@ export const store = configureStore({
     editarEquipo: EditarEquipoReducer,
     actualizarEquipo: actualizarEquipoReducer,
     jugador: traerJugadoresReducer,
-    crearJugador: crearJugadorReducer
+    crearJugador: crearJugadorReducer,
+    registro: UsuarioReducer
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

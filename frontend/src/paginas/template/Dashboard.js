@@ -10,7 +10,6 @@ import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
 import Container from '@mui/material/Container';
-import Grid from '@mui/material/Grid';
 import MenuIcon from '@mui/icons-material/Menu';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import { mainListItems } from './listItems';
@@ -73,9 +72,9 @@ function DashboardContent() {
 
   return (
     <ThemeProvider theme={mdTheme}>
-      <Box sx={{ display: 'flex'}}>
+      <Box sx={{ display: 'flex' }}>
         <CssBaseline />
-        <AppBar position="absolute" open={open}  sx={{bgcolor: "#212121",}}> {/*barra principal*/} 
+        <AppBar position="absolute" open={open} sx={{ bgcolor: "#212121", }}> {/*barra principal*/}
           <Toolbar
             sx={{
               pr: '24px', // keep right padding when drawer closed
@@ -103,25 +102,25 @@ function DashboardContent() {
               AppAsionados
             </Typography>
             <Typography color="inherit"><CantidadEquipo />
-            </Typography>            
-          </Toolbar>        
+            </Typography>
+          </Toolbar>
         </AppBar>
 
-        <Drawer variant="permanent" open={open}>
+        <Drawer variant="permanent" open={open} >
           <Toolbar
             sx={{
               display: 'flex ',
               alignItems: 'center',
               justifyContent: 'flex-end',
-              px: [1],
+              px: [1],            
             }}>
-              <Box align='center'>
-            <Title children='Menu'/>
+            <Box align='center'>
+              <Title nombre={'Menu'} posicion={'center'}/>
             </Box>
             <IconButton onClick={toggleDrawer}>
               <ChevronLeftIcon />
             </IconButton>
-          </Toolbar> 
+          </Toolbar>
           <Divider />
           <List>{mainListItems}</List>
           <Divider />
@@ -131,19 +130,19 @@ function DashboardContent() {
           component="main"
           sx={{
             backgroundColor: (theme) =>
-              theme.palette.mode === 'light'
-                ? theme.palette.grey[100]
-                : theme.palette.grey[900],
+              theme.palette.mode === 'lights'
+                ? theme.palette.grey[200]
+                : theme.palette.grey[300],
             flexGrow: 1,
             height: '100vh',
             overflow: 'auto',
           }}
         >
-           <Toolbar /> 
-          <Container sx={{ mt: 4, mb: 4, height: '100vh', }}>           
-         
-            <MiRuteador />  
-          
+          <Toolbar />
+          <Container sx={{ mt: 4, mb: 4, height: '100vh', }}>
+
+            <MiRuteador />
+
           </Container>
         </Box>
       </Box>

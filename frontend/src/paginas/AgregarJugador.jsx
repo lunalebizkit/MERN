@@ -13,7 +13,7 @@ import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Jugadores } from '../acciones/jugadores';
 import { useEffect } from 'react';
-import {crearJugador} from '../acciones/crearJugador'
+import {crearJugador} from '../acciones/crearJugador';
 export default function AgregarJugador() {  
    const {estado} =useSelector(state=> state.crearJugador)
 
@@ -38,36 +38,26 @@ export default function AgregarJugador() {
  
         <Stack direction='row' spacing= {2}>
             <Grid item xs={6} align='center' ml={0}>
-                <Paper sx={{ bgcolor: "#e3f2fd", height: 300, width: 350 }} elevation={6} >
-                    <Box component="form" sx={{
-                        '& .MuiTextField-root': { m: 1, width: '25ch' },
+                <Paper sx={{ bgcolor: "#bbdefb", height: 300, width: 350, p: 2 }} elevation={6} >
+                    <Box component="form" sx={{ m: 1, width: 300 
                     }} noValidate 
                         autoComplete="off" onSubmit= {onSubmit}>
                         <Typography variant="h5" m={2} align='center'>Agregar Jugador</Typography>
-                        <TextField 
-                            sx={{ bgcolor: "#e3f2fd" }}
-                            required
-                            name= 'nombre'
-                            type= 'text'
-                            id="outlined-required"
-                            label="Required"
-                            defaultValue="Nombre"
-                            value={nombre}
-                            onChange= {onChange}
+                  
+                         <TextField  type="text" label="Nombre"
+                                variant="standard"
+                                color="warning"
+                                focused
+                                name="nombre" value={nombre} onChange={onChange}
+                            />
+                             <TextField  type="text" label="Apellido"
+                                variant="standard"
+                                color="warning"
+                                focused
+                                name="apellido" value={apellido} onChange={onChange}
+                            />      
                         
-                        />
-                        <TextField
-                            sx={{ bgcolor: "#e3f2fd" }}
-                            required
-                            name= 'apellido'
-                            type= 'text'
-                            id="outlined-required"
-                            label="Required"
-                            defaultValue="Apellido"
-                            value={apellido}
-                            onChange= {onChange}
-                        />
-                        <Box p={2}>
+                        <Box mt={5}>
                             <Button variant="contained" endIcon={<SendIcon />} type="submit" >Enviar</Button>
                         </Box>
                     </Box>

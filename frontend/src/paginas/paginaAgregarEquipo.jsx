@@ -7,7 +7,6 @@ import { limpiar } from "../store/slice/editEquipoSlice";
 import * as React from 'react';
 import TablaEquipo from "../components/TablaEquipo";
 import Paper from '@mui/material/Paper';
-import Input from '@mui/material/Input';
 import Button from '@mui/material/Button';
 import CancelIcon from '@mui/icons-material/Cancel';
 import SendIcon from '@mui/icons-material/Send';
@@ -16,6 +15,7 @@ import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import ButtonGroup from '@mui/material/ButtonGroup';
+import TextField from '@mui/material/TextField'
 
 const PaginaAgregarEquipo = () => {
 
@@ -30,12 +30,7 @@ const PaginaAgregarEquipo = () => {
     useEffect(() => {
         dispatch(GetEquipo())
     }, [cargaEquipo, dispatch, estadoActualizado, estadoDel])
-    // useEffect(() => {
-    //     dispatch(GetEquipo())
-    // }, [estadoActualizado, dispatch])
-    // useEffect(() => {
-    //     dispatch(GetEquipo())
-    // }, [estadoDel, dispatch])
+
     useEffect(() => {
         const { _id, nombre, deporte } = equipoEditar;
         setValor({ nombre, deporte, _id });
@@ -77,8 +72,8 @@ const PaginaAgregarEquipo = () => {
     return (
         <>
             <Grid container spacing={1} align="center" >
-                <Grid item xs={4} sx={{ p: 3}} >
-                    <Paper>
+                <Grid item xs={4} sx={{ p: 3 }} >
+                    <Paper sx={{ bgcolor: '#bbdefb' }}>
                         <Box component="form"
                             sx={{
                                 '& > :not(style)': { m: 1, p: 2 },
@@ -90,11 +85,17 @@ const PaginaAgregarEquipo = () => {
                                     {visible ? "Agregar" : "Editar"} Equipo
                                 </Typography> </Box>
 
-                            <Input name="nombre" type="text" value={nombre} onChange={handleChange} placeholder="Agregar Equipo" />
-
-
-                            <Input name="deporte" type="text" value={deporte} onChange={handleChange} placeholder="Agregar Deporte" />
-
+                            <TextField label="Nombre"
+                                variant="standard"
+                                color="warning"
+                                focused
+                                name="nombre" type="text" value={nombre} onChange={handleChange}
+                            />                          
+                            <TextField name="deporte" type="text" value={deporte} onChange={handleChange} label="Deporte"
+                                variant="standard"
+                                color="warning"
+                                focused
+                            />
                             <Box p={2}>
                                 {visible ? <Button variant="contained" endIcon={<SendIcon />} type="submit" >Enviar</Button>
                                     : <ButtonGroup variant="contained" aria-label="outlined primary button group" mb={2}><Button type="submit" startIcon={<DoneIcon />} color="success" variant="contained" >ACTUALIZAR</Button>
@@ -106,7 +107,7 @@ const PaginaAgregarEquipo = () => {
                     </Paper>
                 </Grid>
                 <Grid item xs={8}>
-                 <TablaEquipo />
+                    <TablaEquipo />
                 </Grid>
 
             </Grid>

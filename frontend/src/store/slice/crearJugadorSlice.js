@@ -12,7 +12,7 @@ export const crearJugadorSlice= createSlice({
         },
         [crearJugador.fulfilled]: (state, action) =>{
             state.error= false;
-            state.estado= action.payload
+            state.estado= action.payload.data;
         },
         [crearJugador.rejected]: (state, action)=>{
             state.error= true;
