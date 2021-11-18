@@ -16,12 +16,12 @@ import { useEffect } from 'react';
 import {crearJugador} from '../acciones/crearJugador';
 export default function AgregarJugador() {  
    const {estado} =useSelector(state=> state.crearJugador)
-
+   const estadoJugador=useSelector(state=> state.eliminarJugador.estado)
     let { id } = useParams();
     const dispatch = useDispatch();
-      useEffect(()=>{
+    useEffect(()=>{
         dispatch(Jugadores(id))
-    }, [dispatch, id, estado])
+    }, [dispatch, id, estado, estadoJugador])
     const [jugador, setJugador]= useState({nombre: '', apellido: '', id: ''})
     const onSubmit= (e)=>{      
         dispatch(crearJugador(jugador))

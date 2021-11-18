@@ -29,9 +29,7 @@ const FilasTablaEquipos = () => {
                         <EditIcon /></IconButton>
                         <IconButton onClick={()=>{eliminar(_id)}} color="error" ><DeleteIcon />
                         </IconButton>
-
                         <IconButton color="primary" component={RouterLink} to={'AgregarJugador/' + _id} >
-
                             < GroupAddIcon />
                         </IconButton>
                     </TableCell>

@@ -1,6 +1,6 @@
-import { registrarUsuario } from "../../acciones/registrarUsuario";
+import { inicioSesion} from "../../acciones/inicioSesion";
 import { createSlice } from "@reduxjs/toolkit";
-export const registroSlice= createSlice({
+export const inicioSesionSlice= createSlice({
     name: 'usuario',
     initialState: {
         token: [],
@@ -8,18 +8,18 @@ export const registroSlice= createSlice({
         estado: ''
     },
     extraReducers:{
-        [registrarUsuario.pending]: (state, action)=>{
+        [inicioSesion.pending]: (state, action)=>{
             state.estado= 'ENVIANDO'
         },
-        [registrarUsuario.fulfilled]: (state, action) =>{
+        [inicioSesion.fulfilled]: (state, action) =>{
             state.error= false;
             state.token= action.payload.data;
             state.estado= "Usuario Regsitrado";
         },
-        [registrarUsuario.rejected]: (state, action)=>{
+        [inicioSesion.rejected]: (state, action)=>{
             state.error= true;
             state.estado= 'OCURRIO UN ERROR!'
         }
     }
 })
-export default registroSlice.reducer
+export default inicioSesionSlice.reducer

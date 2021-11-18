@@ -20,10 +20,14 @@ const TablaJugadores=()=> {
                     <TableHead >
                         <TableRow>
                             <TableCell sx={{bgcolor: 'warning.main' }}>
-                                <Typography color='white' variant='h6'>Nombre </Typography></TableCell>
-                            <TableCell sx={{bgcolor: 'warning.main' }}><Typography color='white' variant='h6'>
-                                Apellido</Typography></TableCell>
-                         
+                                <Typography color='white' variant='h6'>Nombre </Typography>
+                            </TableCell>
+                            <TableCell sx={{bgcolor: 'warning.main' }}>
+                                <Typography color='white' variant='h6'>Apellido</Typography>
+                            </TableCell>
+                            <TableCell sx={{bgcolor: 'warning.main' }}>
+                                <Typography color='white' variant='h6'>Acciones</Typography>
+                            </TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
