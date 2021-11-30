@@ -11,6 +11,7 @@ ruta.get('/jugador/:id', async(req, res)=>{
 ruta.get('/jugadores/:id', async(req, res)=>{
     const {id}=req.params
    const buscarEquipo= await Jugador.findById(id)
+   console.info(buscarEquipo)
     res.send(buscarEquipo)
 });
 ruta.put('/jugador/:id', async(req, res)=>{

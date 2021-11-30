@@ -33,7 +33,7 @@ const FilasTablaJugador= ()=>{
                             <TableCell>{apellido}</TableCell>
                             <TableCell>                            
                                 <IconButton color="secondary"
-                                    onClick={botonEditaJugador(_id)} >
+                                    onClick={()=> {botonEditaJugador(_id)}} >
                                     <EditIcon />
                                 </IconButton>
                                 <IconButton onClick={()=>{eliminar(_id)}} color="error" >

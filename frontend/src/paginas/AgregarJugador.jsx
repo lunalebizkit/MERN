@@ -13,50 +13,78 @@ import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Jugadores } from '../acciones/jugadores';
 import { useEffect } from 'react';
-import {crearJugador} from '../acciones/crearJugador';
-export default function AgregarJugador() {  
-   const {estado} =useSelector(state=> state.crearJugador)
-   const estadoJugador=useSelector(state=> state.eliminarJugador.estado)
+import { limpiarPlayer } from '../store/slice/editarJugadorSlice';
+import { crearJugador } from '../acciones/crearJugador';
+export default function AgregarJugador() {
+    const { estado } = useSelector(state => state.crearJugador)
+    const estadoJugador = useSelector(state => state.eliminarJugador.estado)
+    const { player } = useSelector(state => state.editarJugador)
+
+
     let { id } = useParams();
     const dispatch = useDispatch();
-    useEffect(()=>{
+
+    useEffect(() => {
         dispatch(Jugadores(id))
     }, [dispatch, id, estado, estadoJugador])
-    const [jugador, setJugador]= useState({nombre: '', apellido: '', id: ''})
-    const onSubmit= (e)=>{      
-        dispatch(crearJugador(jugador))
-        setJugador({nombre: '', apellido: '', id: ''})
-        e.preventDefault()
+    const [jugador, setJugador] = useState({ nombre: '', apellido: '', id: '' })
+    useEffect(() => {
+
+        const { _id, apellido, nombre } = player
+        setJugador({ _id, apellido, nombre })
+        console.log(jugador + "jugadores")
+    }, [player, dispatch])
+    const onSubmit = (e) => {
+        const {_id} = jugador
+        if (_id){
+            console.info("onsubmit")
+            dispatch(limpiarPlayer())
+            setJugador({ nombre: '', apellido: '', id: '' })
+            e.preventDefault()
+        }else{
+            console.info("onsubmit no hay id")
+            // dispatch(crearJugador(jugador))
+            setJugador({ nombre: '', apellido: '', id: '' })
+            e.preventDefault()
+        }
+    
     }
-    const onChange= (e)=>{
-        let {name, value}=e.target
-        setJugador({...jugador, [name]: value, id: id})
-       
+    const onChange = (e) => {
+        const {_id}= player
+        if (_id) {
+            console.info("hay id")
+        } else{
+            let { name, value } = e.target
+            setJugador({ ...jugador, [name]: value, id: id })
+        }
+      
+
     }
-    const {nombre, apellido}= jugador
+    const { nombre, apellido } = jugador
     return (<>
- 
-        <Stack direction='row' spacing= {2}>
+
+        <Stack direction='row' spacing={2}>
             <Grid item xs={6} align='center' ml={0}>
                 <Paper sx={{ bgcolor: "#bbdefb", height: 300, width: 350, p: 2 }} elevation={6} >
-                    <Box component="form" sx={{ m: 1, width: 300 
-                    }} noValidate 
-                        autoComplete="off" onSubmit= {onSubmit}>
+                    <Box component="form" sx={{
+                        m: 1, width: 300
+                    }} noValidate
+                        autoComplete="off" onSubmit={onSubmit}>
                         <Typography variant="h5" m={2} align='center'>Agregar Jugador</Typography>
-                  
-                         <TextField  type="text" label="Nombre"
-                                variant="standard"
-                                color="warning"
-                                focused
-                                name="nombre" value={nombre} onChange={onChange}
-                            />
-                             <TextField  type="text" label="Apellido"
-                                variant="standard"
-                                color="warning"
-                                focused
-                                name="apellido" value={apellido} onChange={onChange}
-                            />      
-                        
+
+                        <TextField type="text" label="Nombre"
+                            variant="standard"
+                            color="warning"
+                            focused
+                            name="nombre" value={nombre} onChange={onChange}
+                        />
+                        <TextField type="text" label="Apellido"
+                            variant="standard"
+                            color="warning"
+                            focused
+                            name="apellido" value={apellido} onChange={onChange}
+                        />
+
                         <Box mt={5}>
                             <Button variant="contained" endIcon={<SendIcon />} type="submit" >Enviar</Button>
                         </Box>
@@ -67,6 +95,6 @@ export default function AgregarJugador() {
                 <TablaJugadores />
             </Grid>
         </Stack>
-  
+
     </>)
 }
