@@ -12,7 +12,7 @@ import Typography from '@mui/material/Typography'
 export default function TablaEquipo() {
     return (
 
-        <TableContainer sx={{ maxHeight: 400, bgcolor: '#bbdefb'}} color="secondary" component={Paper} >
+        <TableContainer sx={{ maxHeight: 500, bgcolor: '#bbdefb'}} color="secondary" component={Paper} >
             <Table >
                 <TableHead >
                     <TableRow >
@@ -22,7 +22,7 @@ export default function TablaEquipo() {
                         <TableCell sx={{bgcolor: 'warning.main' }}> <Typography color='white' variant='h6'>Acciones </Typography></TableCell>
                     </TableRow>
                 </TableHead>
-                <TableBody>
+                <TableBody >
                     <FilasTablaEquipos />
                 </TableBody>
             </Table>
