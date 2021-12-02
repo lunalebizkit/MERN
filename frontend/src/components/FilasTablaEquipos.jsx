@@ -12,13 +12,14 @@ import IconButton from '@mui/material/IconButton';
 
 const FilasTablaEquipos = () => {
     const dispatch = useDispatch()
-    const equipos = useSelector((state) => state.equipo.listaEquipo)
+    const equipo = useSelector((state) => state.equipo.listaEquipo)
+    console.log(equipo)
     const eliminar = (id) => {       
         if(window.confirm("estas Seguro de eliminar?")) {
             dispatch(delEquipo(id))
         }}
     const renderizarTablaEquipos = () => {
-        return equipos.map(({ nombre, deporte, _id, jugadores }) => {
+        return equipo.map(({ nombre, deporte, _id, jugadores }) => {
             return (
                 <TableRow key={_id}>
                     <TableCell>{nombre}</TableCell>

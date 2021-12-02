@@ -13,7 +13,7 @@ export default function TablaEquipo() {
     return (
 
         <TableContainer sx={{ maxHeight: 400, bgcolor: '#bbdefb'}} color="secondary" component={Paper} >
-            <Table stickyHeader aria-label="sticky table">
+            <Table >
                 <TableHead >
                     <TableRow >
                         <TableCell sx={{bgcolor: 'warning.main' }}> <Typography color='white' variant='h6'>Nombre </Typography></TableCell>

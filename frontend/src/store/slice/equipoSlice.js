@@ -4,7 +4,8 @@ export const initialState= {
     cargando: false,
     listaEquipo: [],
     error: null,
-    cantidadEquipos: 0
+    cantidadEquipos: 0,
+    cantidadPaginas: []
 };
 export const equipoSlice = createSlice({
     name: 'equipo',
@@ -15,8 +16,9 @@ export const equipoSlice = createSlice({
             state.cantidadEquipos= -1
         },
         [GetEquipo.fulfilled]: (state, action)=>{
-            state.listaEquipo= action.payload.data;
-            state.cantidadEquipos= action.payload.data.length;
+            state.listaEquipo= action.payload.data.equipo;
+            state.cantidadPaginas= action.payload.data.totalPaginas;
+            state.cantidadEquipos= action.payload.data.totalEquipos;
             state.cargando= false;
             state.error= null
         },

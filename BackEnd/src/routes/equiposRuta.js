@@ -2,26 +2,30 @@ const Equipos = require('../model/Equipos');
 const express = require('express');
 const rutas = express.Router();
 rutas.get('/equipos/', async (req, res) => {
-    const { limit, skip } = req.query
-    if (limit) {
-    
-        try {
-            let equipo =await Equipos.find().skip(skip).limit(3)
-            if (equipo) {
-                res.send(equipo)
-            };          
-        } catch (error) {
-            console.log(error)
-            res.status(500).send({ message: `Server error.\n\n${error}` });
-        }
-    }else{
-        try {
-            const equipos = await Equipos.find().limit()
-            res.send(equipos)
-        } catch (error) {
-            console.info(error)
-        }
+    const tamanioPagina = 3;
+    const pagina = parseInt(req.query.pagina || "0");
+    try {
+        let totalEquipos= await Equipos.countDocuments();
+        let equipo = await Equipos.find()
+            .limit(tamanioPagina)
+            .skip(tamanioPagina * pagina)
+        if (equipo) {
+            const totalPaginas={ totalPagina: Math.ceil(totalEquipos / tamanioPagina)}
+            console.log(totalPaginas)
+            res.json({equipo, totalPaginas, totalEquipos})
+        };
+    } catch (error) {
+        console.log(error)
+        res.status(500).send({ message: `Server error.\n\n${error}` });
     }
+    // }else{
+    //     try {
+    //         const equipos = await Equipos.find().limit()
+    //         res.send(equipos)
+    //     } catch (error) {
+    //         console.info(error)
+    //     }
+
 })
 rutas.get('/equipos/:id', async (req, res) => {
     try {
