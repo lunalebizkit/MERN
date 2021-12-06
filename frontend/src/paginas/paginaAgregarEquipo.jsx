@@ -15,10 +15,11 @@ import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import ButtonGroup from '@mui/material/ButtonGroup';
-import TextField from '@mui/material/TextField'
+import TextField from '@mui/material/TextField';
+import { useHistory } from 'react-router-dom';
 
 const PaginaAgregarEquipo = () => {
-
+    const history = useHistory()
     const dispatch = useDispatch()
     const [valor, setValor] = useState({ nombre: '', deporte: '', _id: '' });
     const [visible, setVisible] = useState(true);
@@ -27,6 +28,15 @@ const PaginaAgregarEquipo = () => {
     const cargaEquipo = useSelector(state => state.enviarEquipo.estado);
     const { estado } = useSelector(state => state.eliminarEquipo);
     const estadoActualizado = useSelector(state => state.actualizarEquipo.estado);
+    const { token } = useSelector(state => state.inicioSesion)
+    
+    useEffect(() => {        
+        let traerToken=JSON.parse(localStorage.getItem('token'))
+        console.log(traerToken)
+        if (!traerToken) {
+            history.push("/inicioSesion")
+        }
+        },[]);
     useEffect(() => {
         dispatch(GetEquipo())
     }, [cargaEquipo, dispatch, estadoActualizado, estadoDel])

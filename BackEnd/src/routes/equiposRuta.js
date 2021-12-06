@@ -1,7 +1,8 @@
 const Equipos = require('../model/Equipos');
 const express = require('express');
 const rutas = express.Router();
-rutas.get('/equipos/', async (req, res) => {
+const verifyToken= require('../libs/verifyToken')
+rutas.get('/equipos/', verifyToken, async (req, res) => {
     const tamanioPagina = 3;
     const pagina = parseInt(req.query.pagina || "0");
     try {

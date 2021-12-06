@@ -7,13 +7,32 @@ const SECRET = process.env.SECRET;
 
 rutas.post('/signup', async (req, res) => {
     const { nombreUsuario, contrasenia, email, roles } = req.body;
-    // let usuarioExistente= await Usuarios.findOne({ nombreUsuario: nombreUsuario})
-  
-    // if (usuarioExistente) {
-    //     res.send(usuarioExistente)
-    //     return
+     let usuarioExistente= await Usuario.findOne({ nombreUsuario: nombreUsuario})
+     let emailExistente= await Usuario.findOne({ email: email})
+     if (usuarioExistente  || emailExistente) {
+        res.json({msj: "Usuario Existente"})
+         return
+        }else{
+            const nuevoUsuario = new Usuario({
+                nombreUsuario,
+                contrasenia: await Usuario.encriptarContrasenia(contrasenia),
+                email 
+            });
+            try {
+                let usuarioGuardado = await nuevoUsuario.save();
+                if (usuarioGuardado){
+                    const token = jwt.sign({ id: usuarioGuardado._id }, SECRET, {
+                        expiresIn: 300 //5min ---86400 = 24hs
+                    })
+                    console.info(token)
+                    res.status(200).json({ token })
+                }
+            } catch (error) {
+                console.log(error)
+            }  
+        }
     // }else{
-    //     let emailExistente= await Usuarios.findOne({ email: email})
+    //     
     //     if(emailExistente) {
     //     res.json('Correo Existente') 
     //     return      
@@ -21,30 +40,14 @@ rutas.post('/signup', async (req, res) => {
     // }
     //  res.json( 'no hay usuarios ni contraseña')
     
-    const nuevoUsuario = new Usuario({
-        nombreUsuario,
-        contrasenia: await Usuario.encriptarContrasenia(contrasenia),
-        email 
-    });
-    if (roles) {
-        const buscarRoles = await Roles.find({ nombre: { $in: roles } })
-        nuevoUsuario.roles = buscarRoles.map(rol => rol._id)
-    } else {
-        const rol = await Roles.findOne({ nombre: "usuario" })
-        nuevoUsuario.roles = [rol._id]
-    } 
-    try {
-        const usuarioGuardado = await nuevoUsuario.save();
-        if (usuarioGuardado){
-            const token = jwt.sign({ id: usuarioGuardado._id }, SECRET, {
-                expiresIn: 300 //5min ---86400 = 24hs
-            })
-            console.info(usuarioGuardado)
-            res.status(200).json({ token })
-        }
-    } catch (error) {
-        console.log(error)
-    }   
+   
+    // if (roles) {
+    //     const buscarRoles = await Roles.find({ nombre: { $in: roles } })
+    //     nuevoUsuario.roles = buscarRoles.map(rol => rol._id)
+    // } else {
+    //     const rol = await Roles.findOne({ nombre: "usuario" })
+    //     nuevoUsuario.roles = [rol._id]
+    // }     
 
 })
 rutas.post('/signin', async (req, res) => {
@@ -53,7 +56,8 @@ rutas.post('/signin', async (req, res) => {
     const encontrarContrasenia = await Usuario.compararContrasenia(req.body.contrasenia, usuarioEncontrado.contrasenia)
     if (!encontrarContrasenia) return res.status(401).json({ token: null, mensaje: "contraseña incorrecta" })
     const token = jwt.sign({ id: usuarioEncontrado._id }, SECRET, { expiresIn: 300 })
-    res.json({ token })
+    console.log(token)
+    res.json({ token, id: usuarioEncontrado._id, email: usuarioEncontrado.email })
 })
 rutas.get('/usuarioss', async(req, res)=>{
     const usuario= await Usuario.find();

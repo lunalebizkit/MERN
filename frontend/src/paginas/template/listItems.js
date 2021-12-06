@@ -14,7 +14,7 @@ export const mainListItems = (
       <ListItemIcon>
         <LayersIcon />
       </ListItemIcon>
-      <Link to="/">Inicio</Link>
+      <Link to="/inicioSesion">Iniciar Sesion</Link>
     </ListItem>
     <ListItem button>
       <ListItemIcon>
@@ -26,7 +26,7 @@ export const mainListItems = (
       <ListItemIcon>
         <ShoppingCartIcon />
       </ListItemIcon>
-      <Link to="/paginaAgregarTarea">Tareas</Link>
+      <Link to="/registro">Registro</Link>
     </ListItem>
     <ListItem button>
       <ListItemIcon>

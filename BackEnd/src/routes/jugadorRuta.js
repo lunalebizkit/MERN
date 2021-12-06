@@ -1,9 +1,10 @@
 const Jugador= require('../model/Jugador');
 const Equipos= require('../model/Equipos');
+const verifyToken= require('../libs/verifyToken')
 const express= require('express');
 const ruta= express.Router();
 
-ruta.get('/jugador/:id', async(req, res)=>{
+ruta.get('/jugador/:id', verifyToken, async(req, res)=>{
     const {id}=req.params
    const buscarEquipo= await Equipos.findById(id).populate("jugadores")
     res.send(buscarEquipo)

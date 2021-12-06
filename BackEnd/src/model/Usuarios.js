@@ -3,8 +3,8 @@ const {Schema} = mongoose;
 const bcrypt= require('bcryptjs')
 
 const UsuarioSchema = new Schema({
-  nombreUsuario: {type: String, unique: true,  required: true},
-  email: {type: String, unique: true,  required: true},
+  nombreUsuario: {type: String, required: true},
+  email: {type: String, required: true},
   contrasenia: {type: String, required: true} ,
  roles: [{
    ref: "Roles",

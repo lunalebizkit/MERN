@@ -1,4 +1,5 @@
 const Roles= require('../model/Roles')
+const jwt= require('jsonwebtoken')
 const crearRoles= async()=>{
     try {
         const contador= await Roles.estimatedDocumentCount();
@@ -13,4 +14,5 @@ const crearRoles= async()=>{
         console.info(error)
     }
 }
+
 module.exports= crearRoles

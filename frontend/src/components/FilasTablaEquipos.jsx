@@ -51,7 +51,7 @@ const FilasTablaEquipos = () => {
         <>
             {renderizarTablaEquipos()}
           <Grid sx={{p:2}} align= 'center'>
-             <ButtonGroup variant="contained" aria-label="outlined primary button group">{paginasBoton.map(i =>(<Button onClick={()=>dispatch(GetEquipo(i))}>{i + 1}</Button>))}</ButtonGroup> 
+             <ButtonGroup variant="contained" aria-label="outlined primary button group">{paginasBoton.map(i =>(<Button key={1} onClick={()=>dispatch(GetEquipo(i))}>{i + 1}</Button>))}</ButtonGroup> 
              </Grid>
         </>
     )
