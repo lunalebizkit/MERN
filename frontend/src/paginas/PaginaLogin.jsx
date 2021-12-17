@@ -9,34 +9,32 @@ import Button from '@mui/material/Button';
 import SendIcon from '@mui/icons-material/Send';
 import { useHistory } from 'react-router-dom';
 const PaginaLogin = () => {
-    const { token } = useSelector(state => state.inicioSesion)
+    const { usuario } = useSelector(state => state.inicioSesion)
     const history = useHistory()
-    const [usuario, setUsuario] = useState({ nombreUsuario: '', email: '', constasenia: '' });
-    // useEffect(()=>{
-    //     let traerToken= localStorage.getItem("token");
-    //     if(traerToken !== undefined) {
-    //         history.push("/paginaAgregarEquipo")}
-        
-    // }, [history]);
+    const [user, setUser] = useState({ email: '', constasenia: '' });
+    useEffect(()=>{
+        let traerToken=JSON.parse(localStorage.getItem("usuario"));
+        if(traerToken && traerToken.usuario) {
+            history.push("/paginaAgregarEquipo")}
+    }, [history]);
     const dispatch = useDispatch()
     const onSubmit = (e) => {
-        e.preventDefault()
-        console.info(usuario)
-        dispatch(inicioSesion(usuario))
-        setUsuario({ nombreUsuario: '', email: '', contrasenia: '' })
+        e.preventDefault()    
+        dispatch(inicioSesion(user))
+        setUser({ email: '', contrasenia: '' })
 
     }
     const onChange = (e) => {
         const { name, value } = e.target
-        setUsuario({ ...usuario, [name]: value })
+        setUser({ ...user, [name]: value })
     }
     useEffect(() => {
-        if (token.token !== undefined) {
-            localStorage.setItem('token', JSON.stringify(token.token))
+        if (usuario.token !== undefined) {
+            localStorage.setItem('usuario', JSON.stringify(usuario))
             history.push("/paginaAgregarEquipo")
-            console.log(token.token)
-        }},[token]);
-    const { nombreUsuario, email, contrasenia } = usuario
+            console.log(usuario)
+        }},[usuario]);
+    const { email, contrasenia } = user
     return (<>
         <Box sx={{ width: 500, mx: 'auto' }} >
             <Paper align='center' sx={{ bgcolor: '#bbdefb' }} elevation={3}>

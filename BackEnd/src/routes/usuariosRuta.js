@@ -22,10 +22,10 @@ rutas.post('/signup', async (req, res) => {
                 let usuarioGuardado = await nuevoUsuario.save();
                 if (usuarioGuardado){
                     const token = jwt.sign({ id: usuarioGuardado._id }, SECRET, {
-                        expiresIn: 300 //5min ---86400 = 24hs
+                        expiresIn: 3000 //5min ---86400 = 24hs
                     })
                     console.info(token)
-                    res.status(200).json({ token })
+                    res.status(200).json({ token, usuario: usuarioGuardado.nombreUsuario })
                 }
             } catch (error) {
                 console.log(error)
@@ -55,9 +55,8 @@ rutas.post('/signin', async (req, res) => {
     if (!usuarioEncontrado) return res.status(400).json({ mensaje: "no se encontro el usuario" })
     const encontrarContrasenia = await Usuario.compararContrasenia(req.body.contrasenia, usuarioEncontrado.contrasenia)
     if (!encontrarContrasenia) return res.status(401).json({ token: null, mensaje: "contraseña incorrecta" })
-    const token = jwt.sign({ id: usuarioEncontrado._id }, SECRET, { expiresIn: 300 })
-    console.log(token)
-    res.json({ token, id: usuarioEncontrado._id, email: usuarioEncontrado.email })
+    const token = jwt.sign({ id: usuarioEncontrado._id }, SECRET, { expiresIn: 3000 })
+    res.json({ token, usuario: usuarioEncontrado.nombreUsuario })
 })
 rutas.get('/usuarioss', async(req, res)=>{
     const usuario= await Usuario.find();

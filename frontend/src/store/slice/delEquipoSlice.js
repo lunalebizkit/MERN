@@ -1,7 +1,11 @@
 import { createAsyncThunk, createSlice} from "@reduxjs/toolkit";
+import Token from '../../components/Token'
 import axios from "axios";
+
 export const delEquipo= createAsyncThunk( 'eliminarEquipo/delEquipo', 
-    async(id, {dispatch})=> await axios.delete(`http://localhost:4000/api/equipos/equipos/${id}`))
+    async(id)=>
+    {var header=Token()
+        return await axios.delete(`http://localhost:4000/api/equipos/equipos/${id}`, {headers:header})})
 
 export const deleteEquipoSlice= createSlice({
     name: 'eliminarEquipo',

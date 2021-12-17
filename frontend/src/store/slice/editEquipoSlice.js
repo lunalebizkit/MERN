@@ -1,7 +1,10 @@
 import { createAsyncThunk, createSlice} from "@reduxjs/toolkit";
 import axios from "axios";
+import Token from '../../components/Token'
 export const editEquipo= createAsyncThunk( 'editarEquipo/editEquipo', 
-    async(id, {dispatch})=> await axios.get(`http://localhost:4000/api/equipos/equipos/${id}`));
+    async(id)=> {
+    var header=Token()
+    return await axios.get(`http://localhost:4000/api/equipos/equipos/${id}`, {headers:header})});
 
 export const editarEquipoSlice= createSlice({
     name: 'editarEquipo',

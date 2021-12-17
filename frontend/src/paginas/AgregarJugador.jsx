@@ -29,7 +29,6 @@ export default function AgregarJugador() {
     }, [dispatch, id, estado, estadoJugador])
     const [jugador, setJugador] = useState({ nombre: '', apellido: '', id: '' })
     useEffect(() => {
-
         const { _id, apellido, nombre } = player
         setJugador({ _id, apellido, nombre })
         console.log(jugador + "jugadores")
@@ -43,7 +42,8 @@ export default function AgregarJugador() {
             e.preventDefault()
         }else{
             console.info("onsubmit no hay id")
-            // dispatch(crearJugador(jugador))
+            console.log(jugador)
+            dispatch(crearJugador(jugador))
             setJugador({ nombre: '', apellido: '', id: '' })
             e.preventDefault()
         }

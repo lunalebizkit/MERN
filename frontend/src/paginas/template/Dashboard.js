@@ -1,4 +1,5 @@
 import * as React from 'react';
+import  {useState, useEffect} from 'react';
 import { styled, createTheme, ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import MuiDrawer from '@mui/material/Drawer';
@@ -14,8 +15,9 @@ import MenuIcon from '@mui/icons-material/Menu';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import { mainListItems } from './listItems';
 import MiRuteador from '../../MiRuteador';
-import CantidadEquipo from "../../components/CantidadEquipo";
-import Title from './Title'
+import Title from './Title';
+import LogOut from '../../components/LogOut';
+
 const drawerWidth = 240;
 
 const AppBar = styled(MuiAppBar, {
@@ -70,6 +72,7 @@ function DashboardContent() {
     setOpen(!open);
   };
 
+
   return (
     <ThemeProvider theme={mdTheme}>
       <Box sx={{ display: 'flex' }}>
@@ -101,8 +104,8 @@ function DashboardContent() {
             >
               AppAsionados
             </Typography>
-            <Typography color="inherit"><CantidadEquipo />
-            </Typography>
+         
+           <LogOut />
           </Toolbar>
         </AppBar>
 
@@ -140,9 +143,7 @@ function DashboardContent() {
         >
           <Toolbar />
           <Container sx={{ mt: 4, mb: 4, height: '100vh', }}>
-
             <MiRuteador />
-
           </Container>
         </Box>
       </Box>

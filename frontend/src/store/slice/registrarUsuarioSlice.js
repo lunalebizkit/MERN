@@ -5,7 +5,7 @@ export const registrarUsuarioSlice= createSlice({
     initialState: {
         estado:'',
         error: null,
-        token: []
+        usuario: []
     },
     extraReducers:{
         [registrarUsuario.pending]: (action, state)=>{
@@ -14,7 +14,7 @@ export const registrarUsuarioSlice= createSlice({
         },
         [registrarUsuario.fulfilled]: (state, action)=>{
             state.error= false;
-            state.token= action.payload.data
+            state.usuario= action.payload.data
         },
         [registrarUsuario.rejected]: (state, action)=>{
             state.error= true;

@@ -17,6 +17,8 @@ import Typography from '@mui/material/Typography';
 import ButtonGroup from '@mui/material/ButtonGroup';
 import TextField from '@mui/material/TextField';
 import { useHistory } from 'react-router-dom';
+import CantidadEquipo from "../components/CantidadEquipo";
+
 
 const PaginaAgregarEquipo = () => {
     const history = useHistory()
@@ -28,15 +30,15 @@ const PaginaAgregarEquipo = () => {
     const cargaEquipo = useSelector(state => state.enviarEquipo.estado);
     const { estado } = useSelector(state => state.eliminarEquipo);
     const estadoActualizado = useSelector(state => state.actualizarEquipo.estado);
-    const { token } = useSelector(state => state.inicioSesion)
-    
-    useEffect(() => {        
-        let traerToken=JSON.parse(localStorage.getItem('token'))
+    //const { token } = useSelector(state => state.inicioSesion)
+
+    useEffect(() => {
+        let traerToken = JSON.parse(localStorage.getItem('usuario'))
         console.log(traerToken)
         if (!traerToken) {
             history.push("/inicioSesion")
         }
-        },[]);
+    }, [history]);
     useEffect(() => {
         dispatch(GetEquipo())
     }, [cargaEquipo, dispatch, estadoActualizado, estadoDel])
@@ -100,7 +102,7 @@ const PaginaAgregarEquipo = () => {
                                 color="warning"
                                 focused
                                 name="nombre" type="text" value={nombre} onChange={handleChange}
-                            />                          
+                            />
                             <TextField name="deporte" type="text" value={deporte} onChange={handleChange} label="Deporte"
                                 variant="standard"
                                 color="warning"
@@ -117,6 +119,8 @@ const PaginaAgregarEquipo = () => {
                     </Paper>
                 </Grid>
                 <Grid item xs={8}>
+                    <Typography color="inherit"><CantidadEquipo />
+                    </Typography>
                     <TablaEquipo />
                 </Grid>
 

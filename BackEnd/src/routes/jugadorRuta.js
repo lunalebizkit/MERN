@@ -9,13 +9,13 @@ ruta.get('/jugador/:id', verifyToken, async(req, res)=>{
    const buscarEquipo= await Equipos.findById(id).populate("jugadores")
     res.send(buscarEquipo)
 });
-ruta.get('/jugadores/:id', async(req, res)=>{
+ruta.get('/jugadores/:id',verifyToken, async(req, res)=>{
     const {id}=req.params
    const buscarEquipo= await Jugador.findById(id)
    console.info(buscarEquipo)
     res.send(buscarEquipo)
 });
-ruta.put('/jugador/:id', async(req, res)=>{
+ruta.put('/jugador/:id',verifyToken, async(req, res)=>{
     const {id} =req.params;
     const jugador= req.body
     try {
@@ -27,9 +27,10 @@ ruta.put('/jugador/:id', async(req, res)=>{
         console.log(error)
     }   
 })
-ruta.post('/jugador/:id', async(req, res)=>{ 
+ruta.post('/jugador/:id',verifyToken, async(req, res)=>{ 
     const {id}= req.params
     const {nombre, apellido}= req.body
+    console.log(req.body)
     const jugador= new Jugador({nombre, apellido}) 
     const guardarJugador= await jugador.save()
     if (guardarJugador) { 
@@ -45,7 +46,7 @@ ruta.post('/jugador/:id', async(req, res)=>{
     }  }
     
 });
-ruta.delete('/jugador/:id', async(req, res)=>{
+ruta.delete('/jugador/:id',verifyToken, async(req, res)=>{
     const {id}= req.params
     const buscarEquipo= await Equipos.find( {jugadores: id} )
     if (buscarEquipo.length > 0) {

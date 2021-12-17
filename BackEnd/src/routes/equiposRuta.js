@@ -27,7 +27,7 @@ rutas.get('/equipos/', verifyToken, async (req, res) => {
     //     }
 
 })
-rutas.get('/equipos/:id', async (req, res) => {
+rutas.get('/equipos/:id', verifyToken, async (req, res) => {
     try {
         const id = req.params.id;
         const equipo = await Equipos.findById(id);
@@ -41,7 +41,7 @@ rutas.get('/equipos/:id', async (req, res) => {
     }
 });
 
-rutas.post('/equipos', async (req, res) => {
+rutas.post('/equipos', verifyToken, async (req, res) => {
     const { nombre, deporte } = req.body;
     const equipos = new Equipos({ nombre, deporte });
     await equipos.save();
@@ -49,7 +49,8 @@ rutas.post('/equipos', async (req, res) => {
 });
 rutas.put('/equipos/:_id', async (req, res) => {
     const { _id } = req.params
-    const equipoDato = req.body
+    const equipoDato = req.body;
+    console.log(req.headers)
     try {
         let equipo = await Equipos.findOneAndUpdate({ _id }, equipoDato, { new: true });
         if (!equipo) {
@@ -66,7 +67,7 @@ rutas.put('/equipos/:_id', async (req, res) => {
 
 });
 
-rutas.delete('/equipos/:id', async (req, res) => {
+rutas.delete('/equipos/:id',verifyToken, async (req, res) => {
     await Equipos.findByIdAndRemove(req.params.id);
     res.json({ status: "Equipo Eliminado" })
 });
