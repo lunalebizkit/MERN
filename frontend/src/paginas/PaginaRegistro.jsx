@@ -26,11 +26,11 @@ const PaginaRegistro = () => {
         const { name, value } = e.target
         setUsuario({ ...usuario, [name]: value })
     }
-    // useEffect(()=>{
-    //     let traerToken= localStorage.getItem("token");
-    //     if(traerToken !== undefined) {
-    //         history.push("/paginaAgregarEquipo")}        
-    // }, [history]);
+     useEffect(()=>{
+        let traerToken= JSON.parse(localStorage.getItem("usuario"));
+        if(traerToken && traerToken.usuario) {
+            history.push("/paginaAgregarEquipo")}        
+    }, [history]);
     // useEffect(() => {
     //     if (token.token !== undefined) {
     //         localStorage.setItem('token', token.token)

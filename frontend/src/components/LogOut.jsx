@@ -12,20 +12,17 @@ const LogOut= ()=>{
     const history= useHistory()
     const dispatch= useDispatch()
     const [visible, setVisible] = useState(false)
-    var token= JSON.parse(localStorage.getItem('usuario'))
     useEffect(()=>{
       var token= JSON.parse(localStorage.getItem('usuario'))
-      console.log(user)
       if (token && token.usuario) {
         setVisible(true)
-      }       
-      
+      }           
     }, [user])
     useEffect(()=>{
         limpiarStorage();
         setVisible(!visible);
         history.push('/inicioSesion');
-    }, [usuario]);
+    }, [usuario, history]);
     const limpiarStorage= ()=>{ localStorage.removeItem('usuario')}; 
     return(
         <>{ visible && <>

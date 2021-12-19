@@ -33,7 +33,7 @@ const PaginaLogin = () => {
             localStorage.setItem('usuario', JSON.stringify(usuario))
             history.push("/paginaAgregarEquipo")
             console.log(usuario)
-        }},[usuario]);
+        }},[usuario, history]);
     const { email, contrasenia } = user
     return (<>
         <Box sx={{ width: 500, mx: 'auto' }} >

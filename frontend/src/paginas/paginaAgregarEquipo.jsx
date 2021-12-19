@@ -23,7 +23,7 @@ import CantidadEquipo from "../components/CantidadEquipo";
 const PaginaAgregarEquipo = () => {
     const history = useHistory()
     const dispatch = useDispatch()
-    const [valor, setValor] = useState({ nombre: '', deporte: '', _id: '' });
+    const [valor, setValor] = useState({ nombre: '', deporte: '' });
     const [visible, setVisible] = useState(true);
     const equipoEditar = useSelector(state => state.editarEquipo.equipo)
     const estadoDel = useSelector(state => state.eliminarEquipo.respuesta)
@@ -34,7 +34,6 @@ const PaginaAgregarEquipo = () => {
 
     useEffect(() => {
         let traerToken = JSON.parse(localStorage.getItem('usuario'))
-        console.log(traerToken)
         if (!traerToken) {
             history.push("/inicioSesion")
         }
@@ -51,7 +50,7 @@ const PaginaAgregarEquipo = () => {
         }
     }, [equipoEditar])
     useEffect(() => {
-        setValor({ nombre: '', deporte: '', _id: '' })
+        setValor({ nombre: '', deporte: '' })
         setVisible(true)
     }, [estado])
     const handleChange = (e) => {
@@ -70,12 +69,12 @@ const PaginaAgregarEquipo = () => {
         const { _id } = valor
         if (_id) {
             dispatch(actualizarEquipo(valor))
-            setValor({ nombre: '', deporte: '', _id: '' })
+            setValor({ nombre: '', deporte: ''})
             e.preventDefault(valor)
             setVisible(!visible)
         } else {
             dispatch(cargarEquipos(valor))
-            setValor({ nombre: '', deporte: '', _id: '' })
+            setValor({ nombre: '', deporte: ''})
             e.preventDefault(valor)
         }
     }

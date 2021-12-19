@@ -10,7 +10,6 @@ import EditIcon from '@mui/icons-material/Edit';
 import GroupAddIcon from '@mui/icons-material/GroupAdd';
 import IconButton from '@mui/material/IconButton';
 import { Button, Grid } from "@mui/material";
-import Box from '@mui/material/Box';
 import { GetEquipo } from "../acciones/equipos";
 import ButtonGroup from '@mui/material/ButtonGroup';
 

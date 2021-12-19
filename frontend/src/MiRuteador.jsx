@@ -1,7 +1,7 @@
 import { Switch, Route } from "react-router-dom";
 //import Contador from './components/Contador';
 import PaginaAgregarEquipo from './paginas/paginaAgregarEquipo';
-import React, {useState} from 'react';
+import React from 'react';
 // import AgregarTarea from './paginas/AgregarTarea';
 // import PaginaInicio from './paginas/Inicio';
 import AgregarJugador from './paginas/AgregarJugador';

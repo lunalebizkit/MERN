@@ -15,36 +15,41 @@ import { Jugadores } from '../acciones/jugadores';
 import { useEffect } from 'react';
 import { limpiarPlayer } from '../store/slice/editarJugadorSlice';
 import { crearJugador } from '../acciones/crearJugador';
+import { actualizarJugador } from '../acciones/actualizarJugador';
+
 export default function AgregarJugador() {
     const { estado } = useSelector(state => state.crearJugador)
     const estadoJugador = useSelector(state => state.eliminarJugador.estado)
+    const updateJugador= useSelector(state=>state.actualizarJugador.estado)
     const { player } = useSelector(state => state.editarJugador)
-
-
+    const [jugador, setJugador] = useState({ nombre: '', apellido: '' })
+    const [visible, setVisible] = useState(true);
     let { id } = useParams();
     const dispatch = useDispatch();
-
     useEffect(() => {
         dispatch(Jugadores(id))
-    }, [dispatch, id, estado, estadoJugador])
-    const [jugador, setJugador] = useState({ nombre: '', apellido: '', id: '' })
+    }, [dispatch, id, estado, estadoJugador, updateJugador])
+    
     useEffect(() => {
         const { _id, apellido, nombre } = player
-        setJugador({ _id, apellido, nombre })
-        console.log(jugador + "jugadores")
-    }, [player, dispatch])
+        if (_id != null) {
+            setJugador({ _id, apellido, nombre })
+            setVisible(null)
+        }
+    }, [player])
+
     const onSubmit = (e) => {
         const {_id} = jugador
+        console.log(_id)
         if (_id){
-            console.info("onsubmit")
+            dispatch(actualizarJugador(jugador))
+            setJugador({ nombre: '', apellido: '' })
             dispatch(limpiarPlayer())
-            setJugador({ nombre: '', apellido: '', id: '' })
+            setVisible(!visible)
             e.preventDefault()
         }else{
-            console.info("onsubmit no hay id")
-            console.log(jugador)
             dispatch(crearJugador(jugador))
-            setJugador({ nombre: '', apellido: '', id: '' })
+            setJugador({ nombre: '', apellido: '' })
             e.preventDefault()
         }
     
@@ -52,10 +57,12 @@ export default function AgregarJugador() {
     const onChange = (e) => {
         const {_id}= player
         if (_id) {
-            console.info("hay id")
+            let {name, value} =e.target
+            console.log(_id)
+           setJugador({...jugador, [name]: value, _id})
         } else{
             let { name, value } = e.target
-            setJugador({ ...jugador, [name]: value, id: id })
+            setJugador({ ...jugador, [name]: value, id })
         }
       
 
@@ -70,8 +77,10 @@ export default function AgregarJugador() {
                         m: 1, width: 300
                     }} noValidate
                         autoComplete="off" onSubmit={onSubmit}>
-                        <Typography variant="h5" m={2} align='center'>Agregar Jugador</Typography>
-
+                              <Box pt={2}>
+                                <Typography variant="h5" color='dark.main'>
+                                    {visible ? "Agregar" : "Editar"} Jugador
+                                </Typography> </Box>
                         <TextField type="text" label="Nombre"
                             variant="standard"
                             color="warning"

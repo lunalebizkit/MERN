@@ -1,7 +1,7 @@
 const Equipos = require('../model/Equipos');
 const express = require('express');
 const rutas = express.Router();
-const verifyToken= require('../libs/verifyToken')
+const verifyToken= require('../libs/verifyToken');
 rutas.get('/equipos/', verifyToken, async (req, res) => {
     const tamanioPagina = 3;
     const pagina = parseInt(req.query.pagina || "0");
@@ -41,8 +41,8 @@ rutas.get('/equipos/:id', verifyToken, async (req, res) => {
     }
 });
 
-rutas.post('/equipos', verifyToken, async (req, res) => {
-    const { nombre, deporte } = req.body;
+rutas.post('/equipos', async (req, res) => {
+    const { nombre, deporte } = req.body
     const equipos = new Equipos({ nombre, deporte });
     await equipos.save();
     res.json({ status: "Equipo guardado" });
@@ -50,7 +50,6 @@ rutas.post('/equipos', verifyToken, async (req, res) => {
 rutas.put('/equipos/:_id', async (req, res) => {
     const { _id } = req.params
     const equipoDato = req.body;
-    console.log(req.headers)
     try {
         let equipo = await Equipos.findOneAndUpdate({ _id }, equipoDato, { new: true });
         if (!equipo) {

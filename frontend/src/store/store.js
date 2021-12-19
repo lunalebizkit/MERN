@@ -13,6 +13,7 @@ import UsuarioReducer from './slice/inicioSesionSlice';
 import registroReducer from './slice/registrarUsuarioSlice';
 import eliminarJugadorReducer from './slice/eliminarJugadorSlice';
 import editarJugadorReducer from './slice/editarJugadorSlice';
+import actualizarJugadorReducer from './slice/actualizarJugadorSlice';
 export const store = configureStore({
   reducer: {
     contador: counterReducer,
@@ -28,7 +29,8 @@ export const store = configureStore({
     inicioSesion: UsuarioReducer,
     registro: registroReducer,
     eliminarJugador: eliminarJugadorReducer,
-    editarJugador: editarJugadorReducer
+    editarJugador: editarJugadorReducer,
+    actualizarJugador: actualizarJugadorReducer
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

@@ -8,7 +8,7 @@ export const editarJugadorSlice= createSlice({
         player: []
     },
     reducers:{
-        limpiarPlayer: (state)=>{state.player = []}
+        limpiarPlayer: (state, action)=>{state.player =[]}
     },
     extraReducers:{
         [editarJugador.pending]: (state, action)=>{ state.estado= 'Eniviando'},

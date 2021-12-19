@@ -1,10 +1,8 @@
 import { createAsyncThunk, createSlice} from "@reduxjs/toolkit";
-import Token from '../../components/Token'
 import axios from "axios";
 export const cargarEquipos= createAsyncThunk( 'postEquipos/cargarEquipos', 
     async(valor)=>{
-    var header=Token()
-    return await axios.post('http://localhost:4000/api/equipos/equipos', {headers:header}, valor)})
+    return await axios.post('http://localhost:4000/api/equipos/equipos', valor)})
 export const postEquiposSlice= createSlice({
     name: 'postEquipos',
     initialState: {
@@ -13,7 +11,11 @@ export const postEquiposSlice= createSlice({
         estado: '',
         respuesta: ""
     },reducer:{
-
+        enviarValor: (state, action) =>{
+            state.enviando= "enviando"
+            state.valor = action.payload
+           
+        }
     },
     extraReducers: {
         [cargarEquipos.pending]: (state, action)=>{
@@ -26,11 +28,7 @@ export const postEquiposSlice= createSlice({
         [cargarEquipos.rejected]: (state)=>{
             state.estado= "fallo la carga"
         },
-        enviarValor: (state, action) =>{
-            state.enviando= "enviando"
-            state.valor = action.payload
-           
-        }
+
     }
 });
 
