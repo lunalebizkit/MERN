@@ -14,7 +14,8 @@ export const registrarUsuarioSlice= createSlice({
         },
         [registrarUsuario.fulfilled]: (state, action)=>{
             state.error= false;
-            state.usuario= action.payload.data
+            state.usuario= action.payload.data;
+            state.estado= "Usuario Creado"
         },
         [registrarUsuario.rejected]: (state, action)=>{
             state.error= true;
@@ -22,4 +23,4 @@ export const registrarUsuarioSlice= createSlice({
         }
     }
 })
-export default registrarUsuarioSlice.reducer
+export default registrarUsuarioSlice.reducer 

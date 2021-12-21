@@ -24,7 +24,6 @@ rutas.post('/signup', async (req, res) => {
                     const token = jwt.sign({ id: usuarioGuardado._id }, SECRET, {
                         expiresIn: 3000 //5min ---86400 = 24hs
                     })
-                    console.info(token)
                     res.status(200).json({ token, usuario: usuarioGuardado.nombreUsuario })
                 }
             } catch (error) {

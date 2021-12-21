@@ -32,7 +32,6 @@ const PaginaLogin = () => {
         if (usuario.token !== undefined) {
             localStorage.setItem('usuario', JSON.stringify(usuario))
             history.push("/paginaAgregarEquipo")
-            console.log(usuario)
         }},[usuario, history]);
     const { email, contrasenia } = user
     return (<>

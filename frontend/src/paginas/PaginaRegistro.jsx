@@ -14,7 +14,7 @@ import { useHistory } from 'react-router-dom';
 const PaginaRegistro = () => {
     const dispatch = useDispatch()
     const history = useHistory()
-    const { token } = useSelector(state => state.registro)
+    const token = useSelector(state => state.registro.usuario)
     const [usuario, setUsuario] = useState({ nombreUsuario: '', email: '', constasenia: '' });
     const { nombreUsuario, email, contrasenia } = usuario;
     const onSubmitRegistro = (e) => {
@@ -26,17 +26,20 @@ const PaginaRegistro = () => {
         const { name, value } = e.target
         setUsuario({ ...usuario, [name]: value })
     }
+
      useEffect(()=>{
         let traerToken= JSON.parse(localStorage.getItem("usuario"));
         if(traerToken && traerToken.usuario) {
             history.push("/paginaAgregarEquipo")}        
     }, [history]);
-    // useEffect(() => {
-    //     if (token.token !== undefined) {
-    //         localStorage.setItem('token', token.token)
-    //         history.push("/paginaAgregarEquipo")
-    //         console.log(token.token)
-    //     }},[token, history]);
+    useEffect(() => {
+        if (token.token !== undefined) {        
+            localStorage.setItem('usuario', JSON.stringify(token))
+            history.push("/paginaAgregarEquipo")
+            console.log(token.token)
+        }if(token.msj)
+            { window.alert(token.msj)}},
+            [token, history]);
     return (
         <Box sx={{ width: 500, mx: 'auto' }} >
             <Paper align='center' sx={{ bgcolor: '#bbdefb' }} elevation={3}>
