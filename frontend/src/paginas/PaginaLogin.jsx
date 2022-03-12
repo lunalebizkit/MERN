@@ -8,6 +8,8 @@ import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import SendIcon from '@mui/icons-material/Send';
 import { useHistory } from 'react-router-dom';
+import Avatar from '@mui/material/Avatar';
+import Stack from '@mui/material/Stack';
 const PaginaLogin = () => {
     const { usuario } = useSelector(state => state.inicioSesion)
     const history = useHistory()
@@ -19,8 +21,10 @@ const PaginaLogin = () => {
     }, [history]);
     const dispatch = useDispatch()
     const onSubmit = (e) => {
-        e.preventDefault()    
-        dispatch(inicioSesion(user))
+        e.preventDefault()
+        if (user.email.length > 1){
+            dispatch(inicioSesion(user))
+        }        
         setUser({ email: '', contrasenia: '' })
 
     }
@@ -35,21 +39,26 @@ const PaginaLogin = () => {
         }},[usuario, history]);
     const { email, contrasenia } = user
     return (<>
+    
         <Box sx={{ width: 500, mx: 'auto' }} >
-            <Paper align='center' sx={{ bgcolor: '#bbdefb' }} elevation={3}>
+            <Paper align='center' sx={{ bgcolor: '#bbdefb' }} elevation={3}>           
                 <Box component="form"
                     sx={{ m: 5, p: 5 }}
                     noValidate
                     autoComplete="off" onSubmit={onSubmit}>
-                    <Box pt={2} sx={{ mb: 3 }}>
+                     <Stack direction="" spacing={2}>
+                        <Avatar alt="A" src=""  sx={{ width: 70, height: 70, mx: 'auto' }}/>   
+                    </Stack>
+                    <Box pt={2} sx={{ mb: 3 }}>                    
                         <Typography variant="h4" color='dark.main'>
-                            Iniciar Sesion  </Typography>
+                            Iniciar Sesion  
+                        </Typography>
                     </Box>
-
+                   
                     <TextField
                         label="E-MAIL"
                         variant="standard"
-                        color="warning"
+                        color="warning"                    
                         focused
                         value={email}
                         sx={{ mb: 2 }}
@@ -58,7 +67,8 @@ const PaginaLogin = () => {
                         type='email'
                         required
                     />
-                    <TextField
+                     
+                    <TextField                                    
                         label="CONTRASEÑA"
                         variant="standard"
                         color="warning"

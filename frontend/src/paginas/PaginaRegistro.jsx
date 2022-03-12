@@ -5,12 +5,11 @@ import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
 import TextField from '@mui/material/TextField';
-import ButtonGroup from '@mui/material/ButtonGroup';
 import Button from '@mui/material/Button';
-import CancelIcon from '@mui/icons-material/Cancel';
 import SendIcon from '@mui/icons-material/Send';
-import DoneIcon from '@mui/icons-material/Done';
 import { useHistory } from 'react-router-dom';
+import Avatar from '@mui/material/Avatar';
+import Stack from '@mui/material/Stack';
 const PaginaRegistro = () => {
     const dispatch = useDispatch()
     const history = useHistory()
@@ -47,6 +46,9 @@ const PaginaRegistro = () => {
                     sx={{ m: 5, p: 5 }}
                     noValidate
                     autoComplete="off" onSubmit={onSubmitRegistro}>
+                         <Stack direction="" spacing={2}>
+                        <Avatar alt="A" src=""  sx={{ width: 70, height: 70, mx: 'auto' }}/>   
+                    </Stack>
                     <Box pt={2} sx={{ mb: 3 }}>
                         <Typography variant="h4" color='dark.main'>
                             Registro de Usuario

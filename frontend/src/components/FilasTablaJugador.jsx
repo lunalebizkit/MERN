@@ -6,10 +6,11 @@ import TableCell from '@mui/material/TableCell';
 import TableRow from '@mui/material/TableRow';
 import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/Delete'
-import EditIcon from '@mui/icons-material/Edit';
+import EditIcon from '@mui/icons-material/Edit'; 
 
 const FilasTablaJugador= ()=>{   
     const {jugadores}= useSelector((state)=> state.jugador.jugadores)
+    //const [totalPaginas, setTotalPaginas]= useState(0);
     const dispatch= useDispatch()
     const eliminar= (id)=>{
         dispatch(eliminarJugador(id))

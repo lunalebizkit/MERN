@@ -42,14 +42,29 @@ export default function AgregarJugador() {
         const {_id} = jugador
         console.log(_id)
         if (_id){
-            dispatch(actualizarJugador(jugador))
-            setJugador({ nombre: '', apellido: '' })
-            dispatch(limpiarPlayer())
-            setVisible(!visible)
-            e.preventDefault()
+            if (nombre.length > 1) {
+                if (apellido.length > 1) {
+                    dispatch(actualizarJugador(jugador))
+                    setJugador({ nombre: '', apellido: '' })
+                    dispatch(limpiarPlayer())
+                    setVisible(!visible)
+                }
+            }
+            // dispatch(actualizarJugador(jugador))
+            // setJugador({ nombre: '', apellido: '' })
+            // dispatch(limpiarPlayer())
+            // setVisible(!visible)
+             e.preventDefault()
         }else{
-            dispatch(crearJugador(jugador))
-            setJugador({ nombre: '', apellido: '' })
+            if (nombre.length > 1) {
+                if (apellido.length > 1) {
+                    dispatch(crearJugador(jugador))
+                    setJugador({ nombre: '', apellido: '' })
+                    dispatch(limpiarPlayer())
+                    setVisible(!visible)
+                }
+            }
+           
             e.preventDefault()
         }
     
@@ -98,7 +113,7 @@ export default function AgregarJugador() {
                             <Button variant="contained" endIcon={<SendIcon />} type="submit" >Enviar</Button>
                         </Box>
                     </Box>
-                </Paper>
+                </Paper> 
             </Grid>
             <Grid item m={2} xs={6}>
                 <TablaJugadores />

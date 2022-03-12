@@ -10,6 +10,7 @@ mongo.connect(URI, {
     /*useFindAndModify: true,
     useCreateIndex: true*/
 });
+console.log("Uri" + URI)
 const conexion= mongo.connection;
 conexion.once('open', ()=>{
     console.log("Se conecto la base de Datos Mongo!!!")

@@ -68,12 +68,15 @@ const PaginaAgregarEquipo = () => {
     const handleSubmit = (e) => {
         const { _id } = valor
         if (_id) {
-            dispatch(actualizarEquipo(valor))
+            if ((valor.deporte.length > 1)&&(valor.nombre.length > 1)) {
+                dispatch(actualizarEquipo(valor))
+            }            
             setValor({ nombre: '', deporte: ''})
             e.preventDefault(valor)
             setVisible(!visible)
         } else {
-            dispatch(cargarEquipos(valor))
+            if (valor.deporte.length > 1){
+            dispatch(cargarEquipos(valor))}
             setValor({ nombre: '', deporte: ''})
             e.preventDefault(valor)
         }

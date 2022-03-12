@@ -10,7 +10,7 @@ rutas.get('/equipos/', verifyToken, async (req, res) => {
         let equipo = await Equipos.find()
             .limit(tamanioPagina)
             .skip(tamanioPagina * pagina)
-        if (equipo) {
+        if (equipo) { 
             const totalPaginas=Math.ceil(totalEquipos / tamanioPagina)
             res.json({equipo, totalPaginas, totalEquipos})
         };

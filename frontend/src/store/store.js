@@ -2,8 +2,7 @@ import { configureStore } from '@reduxjs/toolkit'
 import counterReducer from './slice/counterSlice';
 import equipoSlice from './slice/equipoSlice';
 import postEquiposReducer from './slice/postEquiposSlice';
-import tareaReducer from './slice/tareaSlice'
-import TraerTareaReducer from './slice/traerTareaSlice';
+//import tareaReducer from './slice/tareaSlice'
 import EliminarEquipoReducer from './slice/delEquipoSlice';
 import EditarEquipoReducer from './slice/editEquipoSlice';
 import  actualizarEquipoReducer from './slice/actualizarEquipo';
@@ -19,8 +18,7 @@ export const store = configureStore({
     contador: counterReducer,
     equipo: equipoSlice,
     enviarEquipo: postEquiposReducer,
-    tareas: tareaReducer,
-    traerTarea: TraerTareaReducer,
+    //tareas: tareaReducer,
     eliminarEquipo: EliminarEquipoReducer,
     editarEquipo: EditarEquipoReducer,
     actualizarEquipo: actualizarEquipoReducer,
