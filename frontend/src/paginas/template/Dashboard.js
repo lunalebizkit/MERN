@@ -12,7 +12,7 @@ import IconButton from '@mui/material/IconButton';
 import Container from '@mui/material/Container';
 import MenuIcon from '@mui/icons-material/Menu';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
-import { mainListItems } from './listItems';
+import MainListItems  from './ListItems';
 import MiRuteador from '../../MiRuteador';
 import Title from './Title';
 import LogOut from '../../components/LogOut';
@@ -124,7 +124,7 @@ function DashboardContent() {
             </IconButton>
           </Toolbar>
           <Divider />
-          <List>{mainListItems}</List>
+          <List><MainListItems/></List>
           <Divider />
           <List></List>
         </Drawer>

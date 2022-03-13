@@ -4,7 +4,7 @@ export const inicioSesionSlice= createSlice({
     name: 'usuario',
     initialState: {
         usuario: [],
-        error: null,
+        error: true,
         estado: ''
     },
     extraReducers:{
@@ -21,7 +21,9 @@ export const inicioSesionSlice= createSlice({
             state.estado= 'OCURRIO UN ERROR!'
         }
     },
-    reducers:{ limpiarToken: (state)=>{state.usuario= []}}
+    reducers:{ limpiarToken: (state)=>{
+        state.usuario= [];
+         state.error= true}}
 })
 export default inicioSesionSlice.reducer
 export const {limpiarToken}= inicioSesionSlice.actions

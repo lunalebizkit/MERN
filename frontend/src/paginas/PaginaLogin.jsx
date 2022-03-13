@@ -35,6 +35,7 @@ const PaginaLogin = () => {
     useEffect(() => {
         if (usuario.token !== undefined) {
             localStorage.setItem('usuario', JSON.stringify(usuario))
+            sessionStorage.setItem('usuario', JSON.stringify(usuario))
             history.push("/paginaAgregarEquipo")
         }},[usuario, history]);
     const { email, contrasenia } = user
@@ -47,7 +48,7 @@ const PaginaLogin = () => {
                     noValidate
                     autoComplete="off" onSubmit={onSubmit}>
                      <Stack direction="" spacing={2}>
-                        <Avatar alt="A" src=""  sx={{ width: 70, height: 70, mx: 'auto' }}/>   
+                        <Avatar alt="A" src={'/login.jpg'}  sx={{ bgcolor:'#4a148c', width: 70, height: 70, mx: 'auto' }}/>   
                     </Stack>
                     <Box pt={2} sx={{ mb: 3 }}>                    
                         <Typography variant="h4" color='dark.main'>

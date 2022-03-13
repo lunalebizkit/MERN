@@ -6,19 +6,19 @@ const ruta= express.Router();
 
 ruta.get('/jugador/:id', verifyToken, async(req, res)=>{
     const {id}=req.params
-    const tamanioPagina = 4;
-    const pagina = parseInt(req.query.pagina || "0");
-    try {
-        let totalJugadores= await Jugador.countDocuments();
-        let jugadores = await Jugador.find()
-        .limit(tamanioPagina)
-        .skip(tamanioPagina * pagina)
-        if (jugadores) { 
-            const totalPaginas=Math.ceil(totalJugadores / tamanioPagina)
-            res.json({equipo, totalPaginas, totalEquipos})
-    } catch (error) {
-        console.log(error)
-    }
+    //const tamanioPagina = 4;
+   // const pagina = parseInt(req.query.pagina || "0");
+    // try {
+    //     let totalJugadores= await Jugador.countDocuments();
+    //     let jugadores = await Jugador.find()
+    //     .limit(tamanioPagina)
+    //     .skip(tamanioPagina * pagina)
+    //     if (jugadores) { 
+    //         const totalPaginas=Math.ceil(totalJugadores / tamanioPagina)
+    //         res.json({equipo, totalPaginas, totalEquipos})
+    // } catch (error) {
+    //     console.log(error)
+    // }
    const buscarEquipo= await Equipos.findById(id).populate("jugadores")
     res.send(buscarEquipo)
 });
@@ -41,7 +41,6 @@ ruta.put('/jugador/:_id', async(req, res)=>{
     } 
 })
 ruta.post('/jugador/:id', async(req, res)=>{ 
-    console.log('aca llego jugador')
     const {id}= req.params
     const {nombre, apellido}= req.body
     const jugador= new Jugador({nombre, apellido}) 

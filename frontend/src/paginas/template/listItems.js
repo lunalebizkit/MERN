@@ -1,39 +1,80 @@
-import * as React from 'react';
+import React, {useEffect, useState} from 'react';
 import ListItem from '@mui/material/ListItem';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import DashboardIcon from '@mui/icons-material/Dashboard';
-import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
-import BarChartIcon from '@mui/icons-material/BarChart';
-import LayersIcon from '@mui/icons-material/Layers';
 import {Link} from "react-router-dom";
+import PersonAddAltSharpIcon from '@mui/icons-material/PersonAddAltSharp';
+import PersonOutlineSharpIcon from '@mui/icons-material/PersonOutlineSharp';
+import SportsSoccerSharpIcon from '@mui/icons-material/SportsSoccerSharp';
+import SportsKabaddiSharpIcon from '@mui/icons-material/SportsKabaddiSharp';
+import SportsScoreOutlinedIcon from '@mui/icons-material/SportsScoreOutlined';
+import SportsOutlinedIcon from '@mui/icons-material/SportsOutlined';
+import SportsEsportsOutlinedIcon from '@mui/icons-material/SportsEsportsOutlined';
+import { useSelector } from "react-redux";
+import { useHistory } from 'react-router-dom';
 
-
-export const mainListItems = (
-  <div>
-    <ListItem button>
+export default function MainListItems() {
+  const history= useHistory()
+ const user= useSelector(state=> state.inicioSesion.error)
+const [visible, setVisible]=useState(false)
+useEffect(()=>{
+ setVisible(user)
+},[user]);
+  return (
+    <>  {visible ?
+      <>
+    <ListItem  button onClick={()=>history.push('/inicioSesion')}>
       <ListItemIcon>
-        <LayersIcon />
+        <PersonOutlineSharpIcon color='warning' />
       </ListItemIcon>
       <Link to="/inicioSesion">Iniciar Sesion</Link>
     </ListItem>
+    <ListItem button onClick={()=>history.push('/registro')}>
+    <ListItemIcon>
+      <PersonAddAltSharpIcon color='primary'/>
+    </ListItemIcon>
+    <Link to="/registro">Registro</Link>
+  </ListItem> 
+  </>
+    :  
+    <>
     <ListItem button>
       <ListItemIcon>
-        <DashboardIcon />
+        <DashboardIcon color='secondary'/>
       </ListItemIcon>
       <Link to="/paginaAgregarEquipo">Equipos</Link>
-    </ListItem>
+    </ListItem>  
+   <ListItem button>
+      <ListItemIcon>
+       <SportsSoccerSharpIcon sx={{color:'#d81b60'}} />
+      </ListItemIcon>
+      <Link to="#">Deportes</Link>
+    </ListItem> 
     <ListItem button>
       <ListItemIcon>
-        <ShoppingCartIcon />
+       <SportsKabaddiSharpIcon sx={{color: '#cddc39'}}/>
       </ListItemIcon>
-      <Link to="/registro">Registro</Link>
-    </ListItem>
+      <Link to="#">Jugadores</Link>
+    </ListItem> 
     <ListItem button>
       <ListItemIcon>
-        <BarChartIcon />
+       <SportsEsportsOutlinedIcon sx={{color: '#ef6c00'}}/>
       </ListItemIcon>
-      <Link to="/contador">Contador</Link>
-    </ListItem>
-  </div>
-);
-
+      <Link to="#">Ligas</Link>
+    </ListItem> 
+    <ListItem button>
+      <ListItemIcon>
+       < SportsScoreOutlinedIcon sx={{color: '#795548'}}/>
+      </ListItemIcon>
+      <Link to="#">Torneos</Link>
+    </ListItem> 
+    <ListItem button>
+      <ListItemIcon>
+      < SportsOutlinedIcon sx={{color: '#ffc400'}}/>
+      </ListItemIcon>
+      <Link to="#">Partidos</Link>
+    </ListItem> 
+    </>
+  }</>
+)};
+ 
