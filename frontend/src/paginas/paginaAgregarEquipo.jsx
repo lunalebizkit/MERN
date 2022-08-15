@@ -121,8 +121,7 @@ const PaginaAgregarEquipo = () => {
                     </Paper>
                 </Grid>
                 <Grid item xs={8}>
-                    <Typography color="inherit"><CantidadEquipo />
-                    </Typography>
+                    <CantidadEquipo />                   
                     <TablaEquipo />
                 </Grid>
 

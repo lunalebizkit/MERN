@@ -1,4 +1,4 @@
-import React, { useEffect, useState} from "react";
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link as RouterLink } from 'react-router-dom';
 import { editEquipo } from "../store/slice/editEquipoSlice";
@@ -9,17 +9,12 @@ import DeleteIcon from '@mui/icons-material/Delete'
 import EditIcon from '@mui/icons-material/Edit';
 import GroupAddIcon from '@mui/icons-material/GroupAdd';
 import IconButton from '@mui/material/IconButton';
-import { Button, Grid } from "@mui/material";
-import { GetEquipo } from "../acciones/equipos";
-import ButtonGroup from '@mui/material/ButtonGroup';
+
 
 const FilasTablaEquipos = () => {
     const dispatch = useDispatch()
     const equipo = useSelector((state) => state.equipo.listaEquipo)
-    const paginas= useSelector(state=> state.equipo.cantidadPaginas)
-    const [totalPaginas, setTotalPaginas]= useState(0);
-    useEffect(()=>{ setTotalPaginas(paginas)},[paginas]);
-    const paginasBoton= new Array(totalPaginas).fill(null).map((v, i)=>i);
+    
     const eliminar = (id) => {       
         if(window.confirm("estas Seguro de eliminar?")) {
             dispatch(delEquipo(id))
@@ -47,12 +42,10 @@ const FilasTablaEquipos = () => {
         })
     }
     return (
-        <>
-            {renderizarTablaEquipos()}
-          <Grid sx={{p:2}} align= 'center'>
-             <ButtonGroup variant="contained" aria-label="outlined primary button group">{paginasBoton.map(i =>(<Button key={1} onClick={()=>dispatch(GetEquipo(i))}>{i + 1}</Button>))}</ButtonGroup> 
-             </Grid>
-        </>
+        
+            renderizarTablaEquipos()
+          
+        
     )
 }
 export default FilasTablaEquipos
