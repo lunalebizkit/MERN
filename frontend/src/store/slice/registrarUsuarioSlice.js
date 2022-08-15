@@ -4,12 +4,12 @@ export const registrarUsuarioSlice= createSlice({
     name: 'registrarUsuario',
     initialState: {
         estado:'',
-        error: null,
+        error: true,
         usuario: []
     },
     extraReducers:{
         [registrarUsuario.pending]: (action, state)=>{
-            state.error= null;
+            state.error= true;
             state.estado= 'enviando Datos'
         },
         [registrarUsuario.fulfilled]: (state, action)=>{
@@ -21,6 +21,10 @@ export const registrarUsuarioSlice= createSlice({
             state.error= true;
             state.estado= 'Ocurrio un Error!!'
         }
-    }
+    },
+    reducers:{ limpiarNewUser: (state)=>{
+        state.usuario= [];
+         state.error= true}}
 })
-export default registrarUsuarioSlice.reducer 
+export default registrarUsuarioSlice.reducer;
+export const {limpiarNewUser}= registrarUsuarioSlice.actions
