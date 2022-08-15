@@ -4,7 +4,8 @@ export const actualizarEquipo= createAsyncThunk('actualizarEquip/actualizarEquip
  async(valor)=>{
  const {_id, nombre, deporte}= valor;
 
- return await axios({method: 'put',
+ return await axios(
+    {method: 'put',
     url:`http://localhost:4000/api/equipos/equipos/${_id}`,
     data: {nombre, deporte}}
    )})      

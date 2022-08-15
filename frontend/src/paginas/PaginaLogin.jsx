@@ -35,10 +35,19 @@ const PaginaLogin = () => {
     useEffect(() => {
         if (usuario.token !== undefined) {
             localStorage.setItem('usuario', JSON.stringify(usuario))
-            sessionStorage.setItem('usuario', JSON.stringify(usuario))
+                
             history.push("/paginaAgregarEquipo")
         }},[usuario, history]);
     const { email, contrasenia } = user
+
+    const inputProps = {
+        autocomplete: "email",
+        //required,
+      };
+    
+      const passwordInputProps = {
+          autocomplete: "password"
+      }
     return (<>
     
         <Box sx={{ width: 500, mx: 'auto' }} >
@@ -66,7 +75,8 @@ const PaginaLogin = () => {
                         onChange={onChange}
                         name='email'
                         type='email'
-                        required
+                        required='true'
+                        inputProps={inputProps}
                     />
                      
                     <TextField                                    
@@ -80,6 +90,7 @@ const PaginaLogin = () => {
                         name='contrasenia'
                         type='password'
                         required
+                        inputProps={passwordInputProps}
                     />
                     <Box p={2}>
                         <Button variant="contained" endIcon={<SendIcon />} type="submit" >Enviar</Button>

@@ -14,24 +14,38 @@ const LogOut= ()=>{
     const history= useHistory()
     const dispatch= useDispatch()
     const [visible, setVisible] = useState(false)
+
     useEffect(()=>{
+      hidebutton();
+    }, [user, estado, history])
+
+    const hidebutton = () => {
       var token= JSON.parse(localStorage.getItem('usuario'))
+      alert(token?.usuario);
       if (token && token.usuario) {
         setVisible(true)
-      }           
-    }, [user, estado])
-    useEffect(()=>{
-        limpiarStorage();
-        setVisible(!visible);
-        history.push('/inicioSesion');
-    }, [usuario, history]);
-    const limpiarStorage= ()=>{ localStorage.removeItem('usuario')}; 
+      } else {
+        setVisible(false)
+      }
+    }
+
+    const triggerLogOut = () => {
+  
+      limpiarStorage();
+      hidebutton();
+      history.push('/inicioSesion');
+  };
+
+    const limpiarStorage= ()=>{ 
+      localStorage.removeItem('usuario')
+      dispatch(limpiarToken())
+    }; 
     
     return(
-        <>{ !visible && <>
+        <>{ visible && <>
         <Typography>{usuario.usuario}</Typography>
-        <IconButton color='error' onClick={()=>dispatch(limpiarToken())}>
-             <PowerSettingsNewIcon/></IconButton></>} </>
+        <IconButton color='error' onClick={()=>triggerLogOut()}>
+        <PowerSettingsNewIcon/></IconButton></>} </>
              
     )
 }
