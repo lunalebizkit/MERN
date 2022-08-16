@@ -5,47 +5,39 @@ import PowerSettingsNewIcon from '@mui/icons-material/PowerSettingsNew';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import {limpiarToken} from '../store/slice/inicioSesionSlice';
+import { limpiarNewUser } from "../store/slice/registrarUsuarioSlice";
 import IconButton from '@mui/material/IconButton';
 const LogOut= ()=>{
-    const user= useSelector(state=> state.inicioSesion.estado)
-    const registro= useSelector(state=> state.registro.error)
-    const estado= useSelector(state=> state.registro.estado)
-    const {usuario}=useSelector(state=> state.inicioSesion)
+   // const user= useSelector(state=> state.inicioSesion.usuario)
+    //const estado= useSelector(state=> state.registro.estado)
+    const estado=useSelector(state=> state.inicioSesion.error)
+    const nuevoUsuario=useSelector(state=> state.registro.error)
+    const {usuario}=useSelector(state=> state.inicioSesion.usuario)
+    //const usuario1=useSelector(state=> state.registro.usuario)
     const history= useHistory()
     const dispatch= useDispatch()
-    const [visible, setVisible] = useState(false)
+    const [visible, setVisible] = useState(true)
+   
+    useEffect(()=>{
+        setVisible(estado)
+    }, [estado])
+    useEffect(()=>{ 
+        setVisible(nuevoUsuario)
+      },[nuevoUsuario]);
 
     useEffect(()=>{
       hidebutton();
     }, [user, estado, history])
 
-    const hidebutton = () => {
-      var token= JSON.parse(localStorage.getItem('usuario'))
-      alert(token?.usuario);
-      if (token && token.usuario) {
-        setVisible(true)
-      } else {
-        setVisible(false)
-      }
-    }
-
-    const triggerLogOut = () => {
-  
-      limpiarStorage();
-      hidebutton();
-      history.push('/inicioSesion');
-  };
-
-    const limpiarStorage= ()=>{ 
-      localStorage.removeItem('usuario')
-      dispatch(limpiarToken())
-    }; 
+ 
+    const limpiarStorage= ()=>{ localStorage.removeItem('usuario')}; 
     
     return(
-        <>{ visible && <>
-        <Typography>{usuario.usuario}</Typography>
-        <IconButton color='error' onClick={()=>triggerLogOut()}>
-        <PowerSettingsNewIcon/></IconButton></>} </>
+        <>{ !visible && <>
+        <Typography>{nombre}</Typography>
+        <IconButton color='error' onClick={()=>{dispatch(limpiarToken());dispatch(limpiarNewUser());limpiarStorage();history.push('/inicioSesion');}}>
+             <PowerSettingsNewIcon/></IconButton></>} </>
+
              
     )
 }

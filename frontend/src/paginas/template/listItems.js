@@ -16,16 +16,14 @@ import { useHistory } from 'react-router-dom';
 export default function MainListItems() {
   const history= useHistory()
  const user= useSelector(state=> state.inicioSesion.error)
- const usuarioRegistrado= useSelector(state=> state.registro.error)
-const [visible, setVisible]=useState(false)
-
-useEffect(()=>{
- setVisible(user)
+ const nuevoUsuario=useSelector(state=> state.registro.error)
+const [visible, setVisible]=useState(true)
+useEffect(()=>{ 
+     setVisible(user)
 },[user]);
-
-// useEffect(()=>{
-//   setVisible(usuarioRegistrado)
-//  },[ usuarioRegistrado]);
+useEffect(()=>{ 
+  setVisible(nuevoUsuario)
+},[nuevoUsuario]);
 
   return (
     <>  {visible ?
@@ -45,7 +43,7 @@ useEffect(()=>{
   </>
     :  
     <>
-    <ListItem button>
+    <ListItem button onClick={()=>history.push('/paginaAgregarEquipo')}>
       <ListItemIcon>
         <DashboardIcon color='secondary'/>
       </ListItemIcon>
