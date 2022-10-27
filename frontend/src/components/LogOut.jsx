@@ -17,7 +17,7 @@ const LogOut= ()=>{
     const history= useHistory()
     const dispatch= useDispatch()
     const [visible, setVisible] = useState(true)
-   
+    const nombre=  usuario
     useEffect(()=>{
         setVisible(estado)
     }, [estado])
@@ -25,9 +25,9 @@ const LogOut= ()=>{
         setVisible(nuevoUsuario)
       },[nuevoUsuario]);
 
-    useEffect(()=>{
-      hidebutton();
-    }, [user, estado, history])
+    // useEffect(()=>{
+    //   hidebutton();
+    // }, [user, estado, history])
 
  
     const limpiarStorage= ()=>{ localStorage.removeItem('usuario')}; 
